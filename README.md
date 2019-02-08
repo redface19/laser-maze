@@ -11,6 +11,9 @@
 * Pair Coding은 평일 오후 2시부터 6시까지 진행한다. 단 필요에 따라 주말에 1번은 더 볼 수 있다.
 * Pair Coding시에는 각자 컴퓨터를 하루 단위로 번갈아서 개발한다
 * Java Coding Convention을 준수한다
+* commit 메시지 룰을 따른다
+  * '[날짜] 개발 내용 - 세부 내용' 순으로 기입한다
+  * 예) [19-02-08] README 작성 - inital README'
 * Clean Code를 지향한다
   * else 예약어를 사용하지 않는다
   * 메서드와 클래스는 각각 하나의 역할만 수행할 수 있도록 설계한다
