@@ -1,0 +1,67 @@
+@startuml
+
+interface ChessPieceable {
+}
+
+interface Reflectable {
+   void reflect()
+}
+
+interface Playable {
+   void move(Command command)
+   void rotate(Command command)
+}
+
+ChessPieceable <|-- ChessPiece
+Playable <|-- ChessPiece
+abstract class ChessPiece {
+   -Point point
+   -boolean isDead
+   -Direction direction
+}
+
+enum Direction {
+   NORTH(1)
+   NORTHEAST(2)
+   EAST(3)
+   SOUTHEAST(4)
+   WEST(5)
+   SOUTHWEST(6)
+   SOUTH(7)
+   NORTHWEST(8)
+}
+
+enum Rotation {
+   CLOCKWISE(9)
+   COUNTERCLOCKWISE(10)
+}
+
+class Point {
+   -int row
+   -int col
+}
+
+class ChessSquare {
+   -Point point
+   -ChessPiece chessPiece
+
+   +boolean isDefaultChessPiece()
+   +boolean isValid(int commandNumber)
+}
+
+ChessPiece <|-- King
+class King {
+}
+
+class ChessBoard {
+   -{static} final int CHESSBOARD_SIZE = 8
+   +{static} ChessSquare[][] chessSquares
+}
+
+class Command {
+    -ChessSquare chessSquare
+    -int commandNumber
+    +boolean isValid()
+}
+
+@enduml
