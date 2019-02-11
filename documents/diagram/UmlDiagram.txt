@@ -1,0 +1,113 @@
+@startuml
+
+interface ChessPieceable {
+    boolean isDefaultChessPiece()
+    boolean canDead()
+    void hit(LaserPointer laserPointer)
+}
+
+interface Reflectable {
+   void reflect()
+}
+
+interface Playable {
+   void move(Direction direction)
+   void rotate(Rotation rotation)
+}
+
+interface Penetable {
+    void penetrate(LaserPointer laserPointer)
+}
+
+ChessPieceable <|-- ChessPiece
+Playable <|-- ChessPiece
+abstract class ChessPiece {
+   -Point point;
+   -Direction direction
+   -boolean hasBarrier(Direction direction)
+   -boolean hasObstacle(Direction direction)
+   +void terminated()
+}
+
+ChessPiece <|-- DefaultChess
+Penetable <|-- DefaultChess
+class DefaultChess {
+}
+
+
+ChessPiece <|-- King
+class King {
+}
+
+ChessPiece <|-- Laser
+class Laser {
+    +void shoot()
+}
+
+ChessPiece <|-- Splitter
+Reflectable <|-- Splitter
+Penetable <|-- Splitter
+ChessPieceable <|-- Splitter
+class Splitter {
+}
+
+ChessPiece <|-- SquareChess
+Reflectable <|-- SquareChess
+ChessPieceable <|-- SquareChess
+class SquareChess {
+}
+
+ChessPiece <|-- TriangleChess
+Reflectable <|-- TriangleChess
+ChessPieceable <|-- TriangleChess
+class TriangleChess {
+}
+
+class ChessBoard {
+   -{static} final int CHESSBOARD_SIZE = 8
+   +{static} ChessSquare[][] chessSquares
+   +{static} ChessPiece getChessSquare(int row, int col)
+   +{static} void swap(Point point, Direction direction)
+   +{static} void deleteChess(Point point)
+}
+
+class Command {
+    -ChessPiece chessPiece
+    -int commandNumber
+    +void execute()
+}
+
+class LaserPointer {
+    -Pointer point
+    -Direction direction
+    +void move()
+}
+
+enum Direction {
+   NORTH(1)
+   NORTHEAST(2)
+   EAST(3)
+   SOUTHEAST(4)
+   WEST(5)
+   SOUTHWEST(6)
+   SOUTH(7)
+   NORTHWEST(8)
+
+   +{static} Direction getDirection(int commandNumber)
+   +Directino rotate(Rotation rotation)
+   +boolean isRotable(Rotation rotation)
+}
+
+enum Rotation {
+   CLOCKWISE(9)
+   COUNTERCLOCKWISE(10)
+   +{static} Rotation getRotation(int commandNumber)
+}
+
+class Point {
+   -int row
+   -int col
+   +void delete(ChessPiece[][] chessSquares)
+}
+
+@enduml
