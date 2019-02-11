@@ -9,4 +9,19 @@ public enum Direction {
     Direction(int commandNumber) {
         this.commandNumber = commandNumber;
     }
+
+    public static Direction getDirection(int commandNumber) {
+        for (Direction value : values()) {
+            if(value.commandNumber == commandNumber) return value;
+        }
+        return null;
+    }
+
+    public Direction rotate(Rotation rotation) {
+        return null;
+    }
+
+    public boolean isRotable(Rotation rotation) {
+        return false;
+    }
 }

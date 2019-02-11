@@ -15,7 +15,6 @@ interface Playable {
 ChessPieceable <|-- ChessPiece
 Playable <|-- ChessPiece
 abstract class ChessPiece {
-   -Point point
    -boolean isDead
    -Direction direction
 }

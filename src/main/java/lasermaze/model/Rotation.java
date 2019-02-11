@@ -8,4 +8,8 @@ public enum Rotation {
     Rotation(int commandNumber) {
         this.commandNumber = commandNumber;
     }
+
+    public static Rotation getRotation(int commandNumber) {
+        return null;
+    }
 }
