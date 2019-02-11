@@ -10,6 +10,11 @@ public class DefaultChess extends ChessPiece implements Penetable {
     }
 
     @Override
+    public boolean canDead() {
+        return false;
+    }
+
+    @Override
     public void hit(LaserPointer laserPointer) {
         penetrate(laserPointer);
     }
