@@ -6,17 +6,11 @@ public class King extends Piece {
 
     /* 이동, 회전, 파괴가능 */
 
-//    @Override
-//    public boolean isValid(int CommandNumber) {
-//        /* 레이저가 아닐 경우 */
-//        /* 이동가능한지 (예 : 벽에 막히지 않았는지?, 다른 장기가 있는지?) --> ChessBoards */
-//        /* 회전 무조건 가능 */
-//
-//        /* 레이저일 경우 */
-//        /* 이동불가 */
-//        /* 회전가능한지 (레이저는 벽 방향으로 회전불가) --> Piece */
-//        return true;
-//    }
+    private Playable playable;
+
+    public King(Playable playable) {
+        this.playable = playable;
+    }
 
     @Override
     public boolean isDefaultChessPiece() {
@@ -25,6 +19,7 @@ public class King extends Piece {
 
     @Override
     public boolean canDead() {
+        /* hit 이호에 생존여부 거울기사같은 경우는 거울을 맞았을 경우 살수 있기 때문에 */
         return false;
     }
 

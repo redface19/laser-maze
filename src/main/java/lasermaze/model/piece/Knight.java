@@ -2,7 +2,15 @@ package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
 
-public class Square extends Piece implements Reflectable, Pieceable {
+public class Knight extends Piece implements Pieceable {
+
+    private Reflectable reflectable;
+    private Playable playable;
+
+    public Knight(Reflectable reflectable, Playable playable) {
+        this.reflectable = reflectable;
+        this.playable = playable;
+    }
 
     @Override
     public boolean isDefaultChessPiece() {
@@ -15,7 +23,7 @@ public class Square extends Piece implements Reflectable, Pieceable {
             terminated();
             return;
         }
-        reflect();
+        reflectable.reflect(laserPointer, direction);
     }
 
     @Override
@@ -23,8 +31,4 @@ public class Square extends Piece implements Reflectable, Pieceable {
         return false;
     }
 
-    @Override
-    public void reflect() {
-
-    }
 }
