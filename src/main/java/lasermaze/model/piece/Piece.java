@@ -1,11 +1,11 @@
-package lasermaze.model.chesspiece;
+package lasermaze.model.piece;
 
-import lasermaze.model.ChessBoard;
+import lasermaze.model.Board;
 import lasermaze.model.Direction;
 import lasermaze.model.Point;
 import lasermaze.model.Rotation;
 
-public abstract class ChessPiece implements Playable, ChessPieceable {
+public abstract class Piece implements Playable, Pieceable {
     private Point point;
     protected Direction direction;
 
@@ -13,7 +13,7 @@ public abstract class ChessPiece implements Playable, ChessPieceable {
     public void move(Direction direction) {
         if (this instanceof Laser || hasObstacle(direction) || hasBarrier(direction))
             throw new IllegalArgumentException();
-        ChessBoard.swap(point, direction);
+        Board.swap(point, direction);
     }
 
     @Override
@@ -31,6 +31,6 @@ public abstract class ChessPiece implements Playable, ChessPieceable {
     }
 
     public void terminated() {
-        ChessBoard.deleteChess(point);
+        Board.deleteChess(point);
     }
 }

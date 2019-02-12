@@ -1,8 +1,8 @@
-package lasermaze.model.chesspiece;
+package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
 
-public class Laser extends ChessPiece {
+public class Laser extends Piece {
 
     public void shoot() {
     }

@@ -1,4 +1,4 @@
-package lasermaze.model.chesspiece;
+package lasermaze.model.piece;
 
 public interface Reflectable {
     void reflect();

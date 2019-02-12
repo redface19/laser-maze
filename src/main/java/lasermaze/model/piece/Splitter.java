@@ -1,12 +1,12 @@
-package lasermaze.model.chesspiece;
+package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
 
-public class DefaultChess extends ChessPiece implements Penetable {
+public class Splitter extends Piece implements Reflectable, Penetable, Pieceable {
 
     @Override
     public boolean isDefaultChessPiece() {
-        return true;
+        return false;
     }
 
     @Override
@@ -17,6 +17,12 @@ public class DefaultChess extends ChessPiece implements Penetable {
     @Override
     public void hit(LaserPointer laserPointer) {
         penetrate(laserPointer);
+        reflect();
+    }
+
+    @Override
+    public void reflect() {
+
     }
 
     @Override

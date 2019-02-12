@@ -1,18 +1,18 @@
 package lasermaze.model;
 
-import lasermaze.model.chesspiece.ChessPiece;
+import lasermaze.model.piece.Piece;
 
-public class ChessBoard {
+public class Board {
 
     private static final int CHESSBOARD_SIZE = 8;
 
-    public static ChessPiece[][] chessSquares = new ChessPiece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
+    public static Piece[][] chessSquares = new Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
 
     static {
-        /* ChessSquare 내부에 ChessPiece 배정 */
+        /* ChessSquare 내부에 Piece 배정 */
     }
 
-    public static ChessPiece getChessSquare(int row, int col) {
+    public static Piece getChessSquare(int row, int col) {
         return chessSquares[row][col];
     }
 

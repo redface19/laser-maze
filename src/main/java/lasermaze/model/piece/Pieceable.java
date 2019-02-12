@@ -1,8 +1,8 @@
-package lasermaze.model.chesspiece;
+package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
 
-public interface ChessPieceable {
+public interface Pieceable {
     boolean isDefaultChessPiece();
     boolean canDead();
     void hit(LaserPointer laserPointer);

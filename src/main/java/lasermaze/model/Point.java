@@ -1,7 +1,7 @@
 package lasermaze.model;
 
-import lasermaze.model.chesspiece.ChessPiece;
-import lasermaze.model.chesspiece.DefaultChess;
+import lasermaze.model.piece.Dummy;
+import lasermaze.model.piece.Piece;
 
 public class Point {
     private int col;
@@ -12,7 +12,7 @@ public class Point {
         this.row = row;
     }
 
-    public void delete(ChessPiece[][] chessSquares) {
-        chessSquares[row][col] = new DefaultChess();
+    public void delete(Piece[][] chessSquares) {
+        chessSquares[row][col] = new Dummy();
     }
 }

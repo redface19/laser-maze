@@ -1,8 +1,8 @@
-package lasermaze.model.chesspiece;
+package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
 
-public class SquareChess extends ChessPiece implements Reflectable, ChessPieceable {
+public class Triangle extends Piece implements Reflectable, Pieceable {
 
     @Override
     public boolean isDefaultChessPiece() {

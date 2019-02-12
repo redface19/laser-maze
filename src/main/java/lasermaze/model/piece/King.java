@@ -1,8 +1,8 @@
-package lasermaze.model.chesspiece;
+package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
 
-public class King extends ChessPiece {
+public class King extends Piece {
 
     /* 이동, 회전, 파괴가능 */
 
@@ -14,7 +14,7 @@ public class King extends ChessPiece {
 //
 //        /* 레이저일 경우 */
 //        /* 이동불가 */
-//        /* 회전가능한지 (레이저는 벽 방향으로 회전불가) --> ChessPiece */
+//        /* 회전가능한지 (레이저는 벽 방향으로 회전불가) --> Piece */
 //        return true;
 //    }
 

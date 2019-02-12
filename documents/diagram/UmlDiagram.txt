@@ -65,7 +65,7 @@ class TriangleChess {
 
 class ChessBoard {
    -{static} final int CHESSBOARD_SIZE = 8
-   +{static} ChessSquare[][] chessSquares
+   +{static} ChessPiece[][] chessSquares
    +{static} ChessPiece getChessSquare(int row, int col)
    +{static} void swap(Point point, Direction direction)
    +{static} void deleteChess(Point point)
