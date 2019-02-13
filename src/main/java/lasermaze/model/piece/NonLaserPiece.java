@@ -3,7 +3,8 @@ package lasermaze.model.piece;
 import lasermaze.model.Direction;
 import lasermaze.model.Rotation;
 
-public class Laserable implements Playable{
+public class NonLaserPiece extends CommonPlay {
+
     @Override
     public void move(Direction direction) {
 
@@ -13,4 +14,13 @@ public class Laserable implements Playable{
     public void rotate(Rotation rotation) {
 
     }
+
+    private boolean hasBarrier(Direction direction) {
+        return false;
+    }
+
+    private boolean hasObstacle(Direction direction) {
+        return false;
+    }
+
 }

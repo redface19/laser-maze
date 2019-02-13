@@ -6,12 +6,11 @@ public class Splitter extends Piece implements Penetable, Pieceable {
 
     private Reflectable reflectable;
     private Shootable shootable;
-    private Playable playable;
 
     public Splitter(Reflectable reflectable, Shootable shootable, Playable playable) {
+        super(playable);
         this.reflectable = reflectable;
         this.shootable = shootable;
-        this.playable = playable;
     }
 
     @Override

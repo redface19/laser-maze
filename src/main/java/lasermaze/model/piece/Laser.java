@@ -5,11 +5,10 @@ import lasermaze.model.LaserPointer;
 public class Laser extends Piece {
 
     private Shootable shootable;
-    private Playable playable;
 
     public Laser(Shootable shootable, Playable playable) {
+        super(playable);
         this.shootable = shootable;
-        this.playable = playable;
     }
 
     public void shoot() {

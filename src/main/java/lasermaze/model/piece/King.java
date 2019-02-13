@@ -6,11 +6,10 @@ public class King extends Piece {
 
     /* 이동, 회전, 파괴가능 */
 
-    private Playable playable;
-
     public King(Playable playable) {
-        this.playable = playable;
+        super(playable);
     }
+
 
     @Override
     public boolean isDefaultChessPiece() {

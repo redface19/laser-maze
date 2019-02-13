@@ -5,11 +5,10 @@ import lasermaze.model.LaserPointer;
 public class Knight extends Piece implements Pieceable {
 
     private Reflectable reflectable;
-    private Playable playable;
 
     public Knight(Reflectable reflectable, Playable playable) {
+        super(playable);
         this.reflectable = reflectable;
-        this.playable = playable;
     }
 
     @Override
