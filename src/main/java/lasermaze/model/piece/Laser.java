@@ -1,13 +1,14 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
+import lasermaze.model.user.User;
 
 public class Laser extends Piece {
 
     private Shootable shootable;
 
-    public Laser(Shootable shootable, Playable playable) {
-        super(playable);
+    public Laser(User user, Shootable shootable, Playable playable) {
+        super(user, playable);
         this.shootable = shootable;
     }
 

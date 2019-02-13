@@ -1,13 +1,14 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
+import lasermaze.model.user.User;
 
 public class King extends Piece {
 
     /* 이동, 회전, 파괴가능 */
 
-    public King(Playable playable) {
-        super(playable);
+    public King(User user, Playable playable) {
+        super(user, playable);
     }
 
 

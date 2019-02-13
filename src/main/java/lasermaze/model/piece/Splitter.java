@@ -1,14 +1,15 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
+import lasermaze.model.user.User;
 
 public class Splitter extends Piece implements Penetable, Pieceable {
 
     private Reflectable reflectable;
     private Shootable shootable;
 
-    public Splitter(Reflectable reflectable, Shootable shootable, Playable playable) {
-        super(playable);
+    public Splitter(User user, Reflectable reflectable, Shootable shootable, Playable playable) {
+        super(user, playable);
         this.reflectable = reflectable;
         this.shootable = shootable;
     }

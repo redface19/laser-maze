@@ -1,13 +1,14 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
+import lasermaze.model.user.User;
 
 public class Knight extends Piece implements Pieceable {
 
     private Reflectable reflectable;
 
-    public Knight(Reflectable reflectable, Playable playable) {
-        super(playable);
+    public Knight(User user, Reflectable reflectable, Playable playable) {
+        super(user, playable);
         this.reflectable = reflectable;
     }
 

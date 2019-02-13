@@ -1,11 +1,12 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
+import lasermaze.model.user.User;
 
 public class Dummy extends Piece implements Penetable {
-    
-    public Dummy(Playable playable) {
-        super(playable);
+
+    public Dummy(User user, Playable playable) {
+        super(user, playable);
     }
 
     @Override
