@@ -19,10 +19,9 @@ public abstract class Piece implements Pieceable, Cloneable {
     protected Playable playable;
     protected Reflectable reflectable;
     protected Shootable shootable;
-    protected Penetable penetable;
 
     public Piece(User user, PieceProperties pieceProperties) {
-        pieceProperties.inject(playable, reflectable, shootable, penetable);
+        pieceProperties.inject(playable, reflectable, shootable);
         this.user = user;
     }
 

@@ -5,20 +5,17 @@ public class PieceProperties {
     private Playable playable;
     private Reflectable reflectable;
     private Shootable shootable;
-    private Penetable penetable;
 
     private PieceProperties(PiecesPropertiesBuilder piecesPropertiesBuilder) {
         this.playable = piecesPropertiesBuilder.playable;
         this.reflectable = piecesPropertiesBuilder.reflectable;
         this.shootable = piecesPropertiesBuilder.shootable;
-        this.penetable = piecesPropertiesBuilder.penetable;
     }
 
-    public void inject(Playable playable, Reflectable reflectable, Shootable shootable, Penetable penetable) {
+    public void inject(Playable playable, Reflectable reflectable, Shootable shootable) {
         playable = this.playable;
         reflectable = this.reflectable;
         shootable = this.shootable;
-        penetable = this.penetable;
     }
 
     public static class PiecesPropertiesBuilder {
@@ -38,11 +35,6 @@ public class PieceProperties {
 
         public PiecesPropertiesBuilder applyShootable(Shootable shootable) {
             this.shootable = shootable;
-            return this;
-        }
-
-        public PiecesPropertiesBuilder applyPenetable(Penetable penetable) {
-            this.penetable = penetable;
             return this;
         }
 
