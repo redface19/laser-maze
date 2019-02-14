@@ -1,6 +1,8 @@
 package lasermaze.model.piece;
 
+import lasermaze.model.Direction;
 import lasermaze.model.LaserPointer;
+import lasermaze.model.Point;
 import lasermaze.model.user.User;
 
 public class Splitter extends Piece implements Penetable, Pieceable {
@@ -8,8 +10,8 @@ public class Splitter extends Piece implements Penetable, Pieceable {
     private Reflectable reflectable;
     private Shootable shootable;
 
-    public Splitter(User user, PieceProperties pieceProperties) {
-        super(user, pieceProperties);
+    public Splitter(User user, Point point, Direction direction, PieceProperties pieceProperties) {
+        super(user, point, direction, pieceProperties);
     }
 
     @Override

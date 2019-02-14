@@ -1,6 +1,7 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.Direction;
+import lasermaze.model.Point;
 import lasermaze.model.user.User;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ public class PieceTest {
 
     @Test
     public void cloneTest() throws CloneNotSupportedException {
-        Piece piece = new King(new User("Doby"), new NonLaserPiece());
+        Piece piece = new King(new User("Doby"), new Point(4, 0), Direction.EAST, PropertyBundle.KING_PROPRTY.getProperty());
         Piece piece2 = piece.clone();
         piece.direction = Direction.NORTH;
         piece2.direction = Direction.SOUTH;

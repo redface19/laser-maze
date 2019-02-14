@@ -1,11 +1,13 @@
 package lasermaze.model;
 
-import lasermaze.model.piece.King;
-import lasermaze.model.piece.NonLaserPiece;
-import lasermaze.model.piece.Piece;
+import lasermaze.model.piece.*;
 import lasermaze.model.user.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Board {
+
+    private static final Logger log = LoggerFactory.getLogger(Board.class);
 
     private static final int CHESSBOARD_SIZE = 8;
 
@@ -14,10 +16,28 @@ public class Board {
 
     public static Piece[][] chessSquares = new Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
 
-
     static {
-        //putSymmetryPiece(4, 0, new King(user1, new NonLaserPiece()));
-        /* ChessSquare 내부에 Piece 배정 */
+        init();
+        putSymmetryPieces(4, 0, new King(user1, new Point(4, 0), Direction.EAST, PropertyBundle.KING_PROPRTY.getProperty()));
+        putSymmetryPieces(7, 0, new Laser(user1, new Point(7, 0), Direction.EAST, PropertyBundle.LASER_PROPERTY.getProperty()));
+        putSymmetryPieces(7, 7, new Splitter(user1, new Point(4, 0), Direction.EAST, PropertyBundle.SPLITTER_PROPRTY.getProperty()));
+
+        putSymmetryPieces(7, 4, new Knight(user1, new Point(7, 4), Direction.NORTHWEST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(1, 7, new Knight(user1, new Point(1, 7), Direction.NORTHWEST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(2, 0, new Knight(user1, new Point(2, 0), Direction.NORTHEAST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(3, 3, new Knight(user1, new Point(3, 3), Direction.NORTHEAST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(4, 3, new Knight(user1, new Point(4, 3), Direction.SOUTHEAST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+
+        putSymmetryPieces(3, 0, new Knight(user1, new Point(3, 0), Direction.EAST, PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(5, 0, new Knight(user1, new Point(5, 0), Direction.EAST, PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
+    }
+
+    private static void init() {
+        for (int row = 0; row < CHESSBOARD_SIZE; row++) {
+            for (int col = 0; col < CHESSBOARD_SIZE; col++) {
+                chessSquares[row][col] = new Dummy(User.DUMMY_USER, new Point(row, col), Direction.NONE, PropertyBundle.DUMMY_PROPERTY.getProperty());
+            }
+        }
     }
 
     public static Piece getChessSquare(int row, int col) {
@@ -32,12 +52,12 @@ public class Board {
         point.delete(chessSquares);
     }
 
-    public static void putSymmetryPiece(int row, int col, Piece piece) {
-        chessSquares[row][col] = piece;
+    public static void putSymmetryPieces(int row, int col, Piece piece) {
         try {
-            chessSquares[getOpposite(row)][getOpposite(col)] = piece.makeEnemy(new Point(row, col), user2);
+            chessSquares[row][col] = piece;
+            chessSquares[getOpposite(row)][getOpposite(col)] = piece.makeEnemy(new Point(getOpposite(row), getOpposite(col)), user2);
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+            log.error("말 생성 오류 발생 : {}", e);
         }
     }
 

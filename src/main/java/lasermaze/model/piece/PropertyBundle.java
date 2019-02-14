@@ -19,4 +19,9 @@ public enum PropertyBundle {
     PropertyBundle(PieceProperties pieceProperties) {
         this.pieceProperties = pieceProperties;
     }
+
+    public PieceProperties getProperty() {
+        return this.pieceProperties;
+    }
+
 }
