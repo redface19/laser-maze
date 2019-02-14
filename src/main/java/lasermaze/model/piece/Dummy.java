@@ -5,8 +5,8 @@ import lasermaze.model.user.User;
 
 public class Dummy extends Piece implements Penetable {
 
-    public Dummy(User user, Playable playable) {
-        super(user, playable);
+    public Dummy(User user, PieceProperties pieceProperties) {
+        super(user, pieceProperties);
     }
 
     @Override

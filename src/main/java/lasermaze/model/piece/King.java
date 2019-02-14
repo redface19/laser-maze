@@ -7,8 +7,8 @@ public class King extends Piece {
 
     /* 이동, 회전, 파괴가능 */
 
-    public King(User user, Playable playable) {
-        super(user, playable);
+    public King(User user, PieceProperties pieceProperties) {
+        super(user, pieceProperties);
     }
 
 

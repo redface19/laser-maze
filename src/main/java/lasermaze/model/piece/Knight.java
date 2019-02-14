@@ -5,11 +5,8 @@ import lasermaze.model.user.User;
 
 public class Knight extends Piece implements Pieceable {
 
-    private Reflectable reflectable;
-
-    public Knight(User user, Reflectable reflectable, Playable playable) {
-        super(user, playable);
-        this.reflectable = reflectable;
+    public Knight(User user, PieceProperties pieceProperties) {
+        super(user, pieceProperties);
     }
 
     @Override

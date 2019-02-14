@@ -12,14 +12,18 @@ import static org.slf4j.LoggerFactory.getLogger;
 public abstract class Piece implements Pieceable, Cloneable {
     private static final Logger log = getLogger(Piece.class);
 
+    private User user;
     protected Point point;
     protected Direction direction;
-    private User user;
-    private Playable playable;
 
-    public Piece(User user, Playable playable) {
+    protected Playable playable;
+    protected Reflectable reflectable;
+    protected Shootable shootable;
+    protected Penetable penetable;
+
+    public Piece(User user, PieceProperties pieceProperties) {
+        pieceProperties.inject(playable, reflectable, shootable, penetable);
         this.user = user;
-        this.playable = playable;
     }
 
     @Override

@@ -5,11 +5,8 @@ import lasermaze.model.user.User;
 
 public class Laser extends Piece {
 
-    private Shootable shootable;
-
-    public Laser(User user, Shootable shootable, Playable playable) {
-        super(user, playable);
-        this.shootable = shootable;
+    public Laser(User user, PieceProperties pieceProperties) {
+        super(user, pieceProperties);
     }
 
     public void shoot() {

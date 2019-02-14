@@ -16,7 +16,7 @@ public class Board {
 
 
     static {
-        putSymmetryPiece(4, 0, new King(user1, new NonLaserPiece()));
+        //putSymmetryPiece(4, 0, new King(user1, new NonLaserPiece()));
         /* ChessSquare 내부에 Piece 배정 */
     }
 
@@ -34,7 +34,11 @@ public class Board {
 
     public static void putSymmetryPiece(int row, int col, Piece piece) {
         chessSquares[row][col] = piece;
-        chessSquares[getOpposite(row)][getOpposite(col)] = piece.makeEnemy(new Point(row, col), user2);
+        try {
+            chessSquares[getOpposite(row)][getOpposite(col)] = piece.makeEnemy(new Point(row, col), user2);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 
     static int getOpposite(int num) {
