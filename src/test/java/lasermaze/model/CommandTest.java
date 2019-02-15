@@ -1,16 +1,15 @@
 package lasermaze.model;
 
-import lasermaze.model.piece.LaserPiece;
-import lasermaze.model.piece.NonLaserPiece;
-import lasermaze.model.piece.Playable;
+import lasermaze.model.piece.Dummy;
+import lasermaze.model.piece.King;
 import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.slf4j.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class CommandTest {
+    private static final Logger log = getLogger(CommandTest.class);
 
     @Test
     public void command_생성() {
@@ -20,16 +19,11 @@ public class CommandTest {
     }
 
     @Test
-    public void test() {
-        Playable playable = new LaserPiece();
-        Map<String, Playable> map = new HashMap<>();
-        map.put("1", playable);
-        changeStatus(map);
-        assertThat(map.get("1") instanceof NonLaserPiece).isTrue();
-    }
-
-    public void changeStatus(Map<String, Playable> map) {
-        Playable target = new NonLaserPiece();
-        map.put("1", target);
+    public void 정상적으로_이동() {
+        int[] input = {4, 0, 3};
+        Command command = new Command(input);
+        command.execute();
+        assertThat(Board.getChessSquare(4, 1) instanceof King).isTrue();
+        assertThat(Board.getChessSquare(4, 0) instanceof Dummy).isTrue();
     }
 }

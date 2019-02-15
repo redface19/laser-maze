@@ -1,9 +1,6 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Direction;
-import lasermaze.model.LaserPointer;
-import lasermaze.model.Point;
-import lasermaze.model.Rotation;
+import lasermaze.model.*;
 import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -21,12 +18,12 @@ public class PieceProperties {
         this.shootable = piecesPropertiesBuilder.shootable;
     }
 
-    public void move(Direction direction) {
-        playable.move(direction);
+    public void move(Point point, Direction direction) {
+        playable.move(point, direction);
     }
 
-    public void rotate(Rotation rotation) {
-        playable.rotate(rotation);
+    public void rotate(Direction direction, Rotation rotation) {
+        playable.rotate(direction, rotation);
     }
 
     public void shoot(Point point, Direction direction) {

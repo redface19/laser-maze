@@ -28,4 +28,9 @@ public class BoardTest {
     public void getOppositeAbs2() {
         assertThat(Board.getOpposite(1)).isEqualTo(6);
     }
+
+    @Test
+    public void swap() {
+
+    }
 }

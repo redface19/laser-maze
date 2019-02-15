@@ -1,6 +1,7 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.Direction;
+import lasermaze.model.Point;
 import lasermaze.model.Rotation;
 import org.slf4j.Logger;
 
@@ -10,15 +11,16 @@ public class NonLaserPiece extends CommonPlay {
     private static final Logger log = getLogger(NonLaserPiece.class);
 
     @Override
-    public void move(Direction direction) {
+    public void move(Point point, Direction direction) {
         if(hasBarrier(direction)) {
 
         }
         log.debug("direction : {}", direction);
+        point.move(direction);
     }
 
     @Override
-    public void rotate(Rotation rotation) {
+    public void rotate(Direction direction, Rotation rotation) {
 
     }
 

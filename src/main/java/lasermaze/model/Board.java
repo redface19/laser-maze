@@ -35,17 +35,28 @@ public class Board {
     private static void init() {
         for (int row = 0; row < CHESSBOARD_SIZE; row++) {
             for (int col = 0; col < CHESSBOARD_SIZE; col++) {
-                chessSquares[row][col] = new Dummy(User.DUMMY_USER, new Point(row, col), Direction.NONE, PropertyBundle.DUMMY_PROPERTY.getProperty());
+                putDummy(row, col);
             }
         }
+    }
+
+    private static void putDummy(int row, int col) {
+        chessSquares[row][col] = new Dummy(User.DUMMY_USER, new Point(row, col), Direction.NONE, PropertyBundle.DUMMY_PROPERTY.getProperty());
     }
 
     public static Piece getChessSquare(int row, int col) {
         return chessSquares[row][col];
     }
 
-    public static void swap(Point point, Direction direction) {
+    public static Piece getChessSquare(Point point) {
+        return chessSquares[point.getRow()][point.getCol()];
+    }
 
+    public static void swap(Point nextPoint, Direction direction) {
+        Point prevPoint = nextPoint.getPrevPoint(direction);
+        log.debug("prevPoint 덮어쓰기 전 : {}", getChessSquare(prevPoint));
+        chessSquares[nextPoint.getRow()][nextPoint.getCol()] = getChessSquare(prevPoint);
+        putDummy(prevPoint.getRow(), prevPoint.getCol());
     }
 
     public static void deleteChess(Point point) {

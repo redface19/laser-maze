@@ -26,12 +26,13 @@ public abstract class Piece implements Pieceable, Cloneable {
 
     @Override
     public void move(Direction direction) {
-        pieceProperties.move(direction);
+        pieceProperties.move(point, direction);
+        Board.swap(point, direction);
     }
 
     @Override
     public void rotate(Rotation rotation) {
-        pieceProperties.rotate(rotation);
+        pieceProperties.rotate(direction, rotation);
     }
 
     public void terminated() {

@@ -3,7 +3,7 @@ package lasermaze.model;
 public enum Direction {
     NONE(0),
     NORTH(1), NORTHEAST(2), EAST(3), SOUTHEAST(4),
-    WEST(5), SOUTHWEST(6), SOUTH(7), NORTHWEST(8);
+    SOUTH(5), SOUTHWEST(6), WEST(7), NORTHWEST(8);
 
     private int commandNumber;
 
@@ -16,6 +16,12 @@ public enum Direction {
             if(value.commandNumber == commandNumber) return value;
         }
         return null;
+    }
+
+    public Direction getPrevDirection() {
+        int commandNumber = this.commandNumber + 4;
+        if(commandNumber > 8) return getDirection(commandNumber - 8);
+        return getDirection(commandNumber);
     }
 
     public Direction rotate(Rotation rotation) {
