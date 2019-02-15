@@ -13,7 +13,6 @@ public class King extends Piece {
         super(user, point, direction, pieceProperties);
     }
 
-
     @Override
     public boolean isDefaultChessPiece() {
         return false;

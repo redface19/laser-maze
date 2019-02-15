@@ -19,7 +19,7 @@ public class Knight extends Piece implements Pieceable {
     @Override
     public void hit(LaserPointer laserPointer) {
         if (canDead()) {
-            terminated();
+//            terminated();
             return;
         }
         pieceProperties.reflect(laserPointer, direction);

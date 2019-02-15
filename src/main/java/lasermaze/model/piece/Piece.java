@@ -27,7 +27,6 @@ public abstract class Piece implements Pieceable, Cloneable {
     @Override
     public void move(Direction direction) {
         pieceProperties.move(point, direction);
-        Board.swap(point, direction);
     }
 
     @Override
@@ -35,9 +34,9 @@ public abstract class Piece implements Pieceable, Cloneable {
         pieceProperties.rotate(direction, rotation);
     }
 
-    public void terminated() {
-        Board.deleteChess(point);
-    }
+//    public void terminated() {
+//        Board.deleteChess(point);
+//    }
 
     public Piece makeEnemy(Point point, User user) throws CloneNotSupportedException {
         Piece enemy = clone();

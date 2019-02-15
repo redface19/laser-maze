@@ -2,6 +2,7 @@ package lasermaze.model.piece;
 
 import lasermaze.model.Board;
 import lasermaze.model.Command;
+import lasermaze.model.Point;
 import lasermaze.model.user.User;
 
 public class Game {
@@ -21,8 +22,8 @@ public class Game {
             // test Data
             int[] input = {4, 0, 3};
 
-            Command command = new Command(input);
-            command.execute();
+            Command command = new Command(new Point(input[0], input[1]), input[2]);
+            command.execute(board);
         }
     }
 }

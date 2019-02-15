@@ -6,8 +6,6 @@ import lasermaze.model.user.User;
 import org.junit.Test;
 import org.slf4j.Logger;
 
-import static org.junit.Assert.*;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class PieceTest {

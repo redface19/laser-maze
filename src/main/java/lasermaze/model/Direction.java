@@ -18,12 +18,6 @@ public enum Direction {
         return null;
     }
 
-    public Direction getPrevDirection() {
-        int commandNumber = this.commandNumber + 4;
-        if(commandNumber > 8) return getDirection(commandNumber - 8);
-        return getDirection(commandNumber);
-    }
-
     public Direction rotate(Rotation rotation) {
         return null;
     }

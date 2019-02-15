@@ -2,16 +2,15 @@ package lasermaze.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
 
     @Test
-    public void getPrevPoint() {
+    public void getNextPoint() {
         Point point = new Point(4, 1);
-        Point prevPoint = point.getPrevPoint(Direction.EAST);
-        assertThat(prevPoint.equals(new Point(4, 0))).isTrue();
+        Point nextPoint = point.getNextPoint(Direction.EAST);
+        assertThat(nextPoint.equals(new Point(4, 2))).isTrue();
     }
 
     @Test

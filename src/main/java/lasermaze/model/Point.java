@@ -35,9 +35,9 @@ public class Point {
         modify(direction);
     }
 
-    public Point getPrevPoint(Direction direction) {
-        Point prevPoint = new Point(this.row, this.col);
-        return prevPoint.modify(direction.getPrevDirection());
+    public Point getNextPoint(Direction direction) {
+        Point nextPoint = new Point(this.row, this.col);
+        return nextPoint.modify(direction);
     }
 
     public Point modify(Direction direction) {
