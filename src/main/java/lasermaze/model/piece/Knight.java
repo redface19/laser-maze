@@ -22,7 +22,7 @@ public class Knight extends Piece implements Pieceable {
             terminated();
             return;
         }
-        reflectable.reflect(laserPointer, direction);
+        pieceProperties.reflect(laserPointer, direction);
     }
 
     @Override

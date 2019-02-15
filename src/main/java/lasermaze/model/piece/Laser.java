@@ -12,7 +12,7 @@ public class Laser extends Piece {
     }
 
     public void shoot() {
-        shootable.shoot(point, direction);
+        pieceProperties.shoot(point, direction);
     }
 
     @Override

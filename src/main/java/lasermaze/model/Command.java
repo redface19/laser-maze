@@ -1,8 +1,12 @@
 package lasermaze.model;
 
 import lasermaze.model.piece.Piece;
+import org.slf4j.Logger;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class Command {
+    private static final Logger log = getLogger(Command.class);
 
     /* 해당 Piece */
     private Piece piece;
@@ -17,14 +21,9 @@ public class Command {
     }
 
     public void execute() {
+        log.debug("piece : {}", piece);
         if(commandNumber <= 8) piece.move(Direction.getDirection(commandNumber));
         if(commandNumber > 8) piece.rotate(Rotation.getRotation(commandNumber));
     }
-
-//    /* 해당 명령이 수행 가능한지 검사하는 메소드 --> 가능하지 않는 명령어일 경우, 예외발생 */
-//    public boolean isValid(int commandNumber) {
-//        /* ChessSquare 에게 명령 수행유무를 확인 */
-//        return piece.isValid(commandNumber);
-//    }
 
 }

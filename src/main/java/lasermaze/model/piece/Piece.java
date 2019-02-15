@@ -15,26 +15,23 @@ public abstract class Piece implements Pieceable, Cloneable {
     private User user;
     protected Point point;
     protected Direction direction;
-
-    protected Playable playable;
-    protected Reflectable reflectable;
-    protected Shootable shootable;
+    protected PieceProperties pieceProperties;
 
     public Piece(User user, Point point, Direction direction, PieceProperties pieceProperties) {
         this.user = user;
         this.point = point;
         this.direction = direction;
-        pieceProperties.inject(playable, reflectable, shootable);
+        this.pieceProperties = pieceProperties;
     }
 
     @Override
     public void move(Direction direction) {
-        playable.move(direction);
+        pieceProperties.move(direction);
     }
 
     @Override
     public void rotate(Rotation rotation) {
-        playable.rotate(rotation);
+        pieceProperties.rotate(rotation);
     }
 
     public void terminated() {
@@ -45,7 +42,6 @@ public abstract class Piece implements Pieceable, Cloneable {
         Piece enemy = clone();
         enemy.point = point;
         enemy.user = user;
-        log.debug("enemy : {}", enemy);
         return enemy;
     }
 
@@ -56,6 +52,6 @@ public abstract class Piece implements Pieceable, Cloneable {
 
     @Override
     public String toString() {
-        return "Piece[point=" + point + ", direction=" + direction + ", user=" + user +"]";
+        return "Piece[point=" + point + ", direction=" + direction + ", user=" + user + "]";
     }
 }

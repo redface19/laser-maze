@@ -3,12 +3,12 @@ package lasermaze.model;
 import lasermaze.model.piece.Piece;
 
 public class Point {
-    private int col;
     private int row;
+    private int col;
 
-    public Point(int col, int row) {
-        this.col = col;
+    public Point(int row, int col) {
         this.row = row;
+        this.col = col;
     }
 
     public void delete(Piece[][] chessSquares) {
@@ -17,6 +17,6 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point[col=" + col + ", row=" + row + ']';
+        return "Point[row=" + row + ", col=" + col + "]";
     }
 }

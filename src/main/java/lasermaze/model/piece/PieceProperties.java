@@ -1,6 +1,15 @@
 package lasermaze.model.piece;
 
+import lasermaze.model.Direction;
+import lasermaze.model.LaserPointer;
+import lasermaze.model.Point;
+import lasermaze.model.Rotation;
+import org.slf4j.Logger;
+
+import static org.slf4j.LoggerFactory.getLogger;
+
 public class PieceProperties {
+    private static final Logger log = getLogger(PieceProperties.class);
 
     private Playable playable;
     private Reflectable reflectable;
@@ -12,17 +21,26 @@ public class PieceProperties {
         this.shootable = piecesPropertiesBuilder.shootable;
     }
 
-    public void inject(Playable playable, Reflectable reflectable, Shootable shootable) {
-        playable = this.playable;
-        reflectable = this.reflectable;
-        shootable = this.shootable;
+    public void move(Direction direction) {
+        playable.move(direction);
+    }
+
+    public void rotate(Rotation rotation) {
+        playable.rotate(rotation);
+    }
+
+    public void shoot(Point point, Direction direction) {
+        shootable.shoot(point, direction);
+    }
+
+    public void reflect(LaserPointer laserPointer, Direction direction) {
+        reflectable.reflect(laserPointer, direction);
     }
 
     public static class PiecesPropertiesBuilder {
         private Playable playable;
         private Reflectable reflectable;
         private Shootable shootable;
-        private Penetable penetable;
 
         public PiecesPropertiesBuilder(Playable playable) {
             this.playable = playable;
