@@ -32,6 +32,10 @@ public class Board {
         putSymmetryPieces(5, 0, new Knight(user1, new Point(5, 0), Direction.EAST, PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
     }
 
+    public Board(User user1, User user2) {
+
+    }
+
     private static void init() {
         for (int row = 0; row < CHESSBOARD_SIZE; row++) {
             for (int col = 0; col < CHESSBOARD_SIZE; col++) {
