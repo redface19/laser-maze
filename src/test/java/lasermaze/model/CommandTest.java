@@ -41,13 +41,15 @@ public class CommandTest {
     @Test
     public void hasBarrier_벽존재() {
         Command command = new Command(new Point(4, 0), 3);
-        assertThat(command.hasBarrier(Direction.WEST)).isTrue();
+        Point point = new Point(4, 0);
+        assertThat(command.hasBarrier(point, Direction.WEST)).isTrue();
     }
 
     @Test
     public void hasBarrier_벽존재X() {
         Command command = new Command(new Point(4, 0), 3);
-        assertThat(command.hasBarrier(Direction.EAST)).isFalse();
+        Point point = new Point(4, 0);
+        assertThat(command.hasBarrier(point, Direction.EAST)).isFalse();
     }
 
     @Test

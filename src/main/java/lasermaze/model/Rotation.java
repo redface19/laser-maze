@@ -10,6 +10,11 @@ public enum Rotation {
     }
 
     public static Rotation getRotation(int commandNumber) {
+        for (Rotation rotation : values()) {
+            if(rotation.commandNumber == commandNumber) {
+                return rotation;
+            }
+        }
         return null;
     }
 }

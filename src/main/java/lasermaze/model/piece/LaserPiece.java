@@ -14,6 +14,6 @@ public class LaserPiece extends CommonPlay {
 
     @Override
     public void rotate(Direction direction, Rotation rotation) {
-
+        Direction rotatedDirection = direction.getRotatedDirection(rotation);
     }
 }

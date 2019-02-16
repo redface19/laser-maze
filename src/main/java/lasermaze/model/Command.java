@@ -1,5 +1,6 @@
 package lasermaze.model;
 
+import lasermaze.model.piece.Laser;
 import lasermaze.model.piece.Piece;
 import org.slf4j.Logger;
 
@@ -19,20 +20,21 @@ public class Command {
 
     public void execute(Board board) {
         Piece piece = board.getChessSquare(point);
-        Direction direction = Direction.getDirection(commandNumber);
-        log.debug("piece : {}", piece);
         if (commandNumber <= 8) {
-            if(hasBarrier(direction) || hasObstacle(board, direction)) {
+            Direction direction = Direction.getDirection(commandNumber);
+            if(hasBarrier(point, direction) || hasObstacle(board, direction)) {
                 throw new NotSupportedException("Can not move Chess Piece");
             }
             piece.move(direction);
             board.swap(point, direction);
         }
 
-        if (commandNumber > 8) piece.rotate(Rotation.getRotation(commandNumber));
+        if (commandNumber > 8) {
+            piece.rotate(Rotation.getRotation(commandNumber));
+        }
     }
 
-    boolean hasBarrier(Direction direction) {
+    public static boolean hasBarrier(Point point, Direction direction) {
         return point.getNextPoint(direction).isOutOfBound();
     }
 
