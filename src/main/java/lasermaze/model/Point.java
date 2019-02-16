@@ -5,6 +5,8 @@ import lasermaze.model.piece.Piece;
 import java.util.HashMap;
 import java.util.Map;
 
+import static lasermaze.model.Board.CHESSBOARD_SIZE;
+
 public class Point {
     private static final Map<Direction, Point> MOVE_TABLE = new HashMap<>();
 
@@ -53,6 +55,10 @@ public class Point {
 
     public int getCol() {
         return col;
+    }
+
+    public boolean isOutOfBound() {
+        return row < 0 || row >= CHESSBOARD_SIZE || col < 0 || col >= CHESSBOARD_SIZE;
     }
 
     @Override

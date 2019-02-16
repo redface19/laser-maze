@@ -1,6 +1,7 @@
 package lasermaze.model;
 
 import lasermaze.model.piece.King;
+import lasermaze.model.piece.NonLaserPiece;
 import lasermaze.model.piece.PropertyBundle;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,17 +29,21 @@ public class BoardTest {
     }
 
     @Test
-    public void getOppositeAbs() {
+    public void getOpposite() {
         assertThat(board.getOpposite(3)).isEqualTo(4);
     }
 
     @Test
-    public void getOppositeAbs2() {
+    public void getOpposite2() {
         assertThat(board.getOpposite(1)).isEqualTo(6);
     }
 
     @Test
     public void swap() {
 
+    }
+
+    @Test
+    public void 이동_벽() {
     }
 }

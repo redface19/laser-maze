@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 public class Board {
     private static final Logger log = LoggerFactory.getLogger(Board.class);
 
-    private static final int CHESSBOARD_SIZE = 8;
+    public static final int CHESSBOARD_SIZE = 8;
 
     private Piece[][] chessSquares = new Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
 
@@ -71,5 +71,9 @@ public class Board {
 
     int getOpposite(int num) {
         return CHESSBOARD_SIZE - num - 1;
+    }
+
+    public boolean isDummy(Point nextPoint) {
+        return getChessSquare(nextPoint) instanceof Dummy;
     }
 }

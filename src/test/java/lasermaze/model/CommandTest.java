@@ -2,6 +2,7 @@ package lasermaze.model;
 
 import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.King;
+import lasermaze.model.piece.NonLaserPiece;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -33,5 +34,36 @@ public class CommandTest {
         command.execute(board);
         assertThat(board.getChessSquare(4, 1) instanceof King).isTrue();
         assertThat(board.getChessSquare(4, 0) instanceof Dummy).isTrue();
+    }
+
+
+    @Test
+    public void hasBarrier_벽존재() {
+        Command command = new Command(new Point(4, 0), 3);
+        assertThat(command.hasBarrier(Direction.WEST)).isTrue();
+    }
+
+    @Test
+    public void hasBarrier_벽존재X() {
+        Command command = new Command(new Point(4, 0), 3);
+        assertThat(command.hasBarrier(Direction.EAST)).isFalse();
+    }
+
+    @Test
+    public void isOutOfBound() {
+        Point nextPoint = new Point(-1, 0);
+        assertThat(nextPoint.isOutOfBound()).isTrue();
+    }
+
+    @Test
+    public void hasObstacle_장애물존재() {
+        Command command = new Command(new Point(4, 0), 3);
+        assertThat(command.hasObstacle(board, Direction.NORTH)).isTrue();
+    }
+
+    @Test
+    public void hasObstacle_장애물존재X() {
+        Command command = new Command(new Point(4, 0), 3);
+        assertThat(command.hasObstacle(board, Direction.EAST)).isFalse();
     }
 }
