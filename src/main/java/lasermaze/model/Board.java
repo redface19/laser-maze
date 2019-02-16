@@ -18,16 +18,16 @@ public class Board {
     }
 
     private void pieceInit(User user1, User user2) {
-        putSymmetryPieces(4, 0, user2, new King(user1, new Point(4, 0), Direction.EAST, PropertyBundle.KING_PROPRTY.getProperty()));
-        putSymmetryPieces(7, 0, user2, new Laser(user1, new Point(7, 0), Direction.EAST, PropertyBundle.LASER_PROPERTY.getProperty()));
-        putSymmetryPieces(7, 7, user2, new Splitter(user1, new Point(4, 0), Direction.EAST, PropertyBundle.SPLITTER_PROPRTY.getProperty()));
-        putSymmetryPieces(7, 4, user2, new Knight(user1, new Point(7, 4), Direction.NORTHWEST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
-        putSymmetryPieces(1, 7, user2, new Knight(user1, new Point(1, 7), Direction.NORTHWEST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
-        putSymmetryPieces(2, 0, user2, new Knight(user1, new Point(2, 0), Direction.NORTHEAST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
-        putSymmetryPieces(3, 3, user2, new Knight(user1, new Point(3, 3), Direction.NORTHEAST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
-        putSymmetryPieces(4, 3, user2, new Knight(user1, new Point(4, 3), Direction.SOUTHEAST, PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
-        putSymmetryPieces(3, 0, user2, new Knight(user1, new Point(3, 0), Direction.EAST, PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
-        putSymmetryPieces(5, 0, user2, new Knight(user1, new Point(5, 0), Direction.EAST, PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(4, 0, user2, new King(user1, new Position(Direction.EAST, new Point(4, 0)), PropertyBundle.KING_PROPRTY.getProperty()));
+        putSymmetryPieces(7, 0, user2, new Laser(user1, new Position(Direction.EAST, new Point(7, 0)), PropertyBundle.LASER_PROPERTY.getProperty()));
+        putSymmetryPieces(7, 7, user2, new Splitter(user1, new Position(Direction.EAST, new Point(4, 0)), PropertyBundle.SPLITTER_PROPRTY.getProperty()));
+        putSymmetryPieces(7, 4, user2, new Knight(user1, new Position(Direction.NORTHWEST, new Point(7, 4)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(1, 7, user2, new Knight(user1, new Position(Direction.NORTHWEST, new Point(1, 7)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(2, 0, user2, new Knight(user1, new Position(Direction.NORTHEAST, new Point(2, 0)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(3, 3, user2, new Knight(user1, new Position(Direction.NORTHEAST, new Point(3, 3)),  PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(4, 3, user2, new Knight(user1, new Position(Direction.SOUTHEAST, new Point(4, 3)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(3, 0, user2, new Knight(user1, new Position(Direction.EAST, new Point(3, 0)), PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(5, 0, user2, new Knight(user1, new Position(Direction.EAST, new Point(5, 0)), PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
     }
 
     private void dummyInit() {
@@ -39,7 +39,7 @@ public class Board {
     }
 
     private void putDummy(int row, int col) {
-        chessSquares[row][col] = new Dummy(User.DUMMY_USER, new Point(row, col), Direction.NONE, PropertyBundle.DUMMY_PROPERTY.getProperty());
+        chessSquares[row][col] = new Dummy(User.DUMMY_USER, new Position(Direction.NONE, new Point(row, col)), PropertyBundle.DUMMY_PROPERTY.getProperty());
     }
 
     public Piece getChessSquare(int row, int col) {

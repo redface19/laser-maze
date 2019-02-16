@@ -7,7 +7,7 @@ import lasermaze.model.Point;
 public class Shooter implements Shootable {
 
     @Override
-    public LaserPointer shoot(Point point, Direction direction) {
-        return new LaserPointer(point, direction);
+    public LaserPointer shoot(Position position) {
+        return new LaserPointer(position);
     }
 }

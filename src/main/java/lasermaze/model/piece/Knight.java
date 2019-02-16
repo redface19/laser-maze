@@ -7,8 +7,8 @@ import lasermaze.model.user.User;
 
 public class Knight extends Piece implements Pieceable {
 
-    public Knight(User user, Point point, Direction direction, PieceProperties pieceProperties) {
-        super(user, point, direction, pieceProperties);
+    public Knight(User user, Position position, PieceProperties pieceProperties) {
+        super(user, position, pieceProperties);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Knight extends Piece implements Pieceable {
 //            terminated();
             return;
         }
-        pieceProperties.reflect(laserPointer, direction);
+        pieceProperties.reflect(laserPointer, position);
     }
 
     @Override

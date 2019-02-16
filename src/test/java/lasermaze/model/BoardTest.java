@@ -2,6 +2,7 @@ package lasermaze.model;
 
 import lasermaze.model.piece.King;
 import lasermaze.model.piece.NonLaserPiece;
+import lasermaze.model.piece.Position;
 import lasermaze.model.piece.PropertyBundle;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class BoardTest {
 
     @Test
     public void putSymmetryPieces() {
-        board.putSymmetryPieces(4, 0, BRAD, new King(DOBY, new Point(4, 0), Direction.EAST, PropertyBundle.KING_PROPRTY.getProperty()));
+        board.putSymmetryPieces(4, 0, BRAD, new King(DOBY, new Position(Direction.EAST, new Point(4, 0)), PropertyBundle.KING_PROPRTY.getProperty()));
     }
 
     @Test
@@ -38,12 +39,4 @@ public class BoardTest {
         assertThat(board.getOpposite(1)).isEqualTo(6);
     }
 
-    @Test
-    public void swap() {
-
-    }
-
-    @Test
-    public void 이동_벽() {
-    }
 }

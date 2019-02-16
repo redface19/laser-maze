@@ -6,7 +6,7 @@ import lasermaze.model.LaserPointer;
 public class HorizontalReflect implements Reflectable {
 
     @Override
-    public void reflect(LaserPointer laserPointer, Direction direction) {
+    public void reflect(LaserPointer laserPointer, Position position) {
 
     }
 }

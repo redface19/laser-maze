@@ -7,12 +7,12 @@ import lasermaze.model.Rotation;
 public class CommonPlay implements Playable {
 
     @Override
-    public void move(Point point, Direction direction) {
+    public void move(Position position, Direction direction) {
 
     }
 
     @Override
-    public void rotate(Point point, Direction direction, Rotation rotation) {
+    public void rotate(Position position, Rotation rotation) {
 
     }
 }

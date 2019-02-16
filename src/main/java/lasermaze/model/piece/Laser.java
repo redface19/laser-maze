@@ -7,12 +7,12 @@ import lasermaze.model.user.User;
 
 public class Laser extends Piece {
 
-    public Laser(User user, Point point, Direction direction, PieceProperties pieceProperties) {
-        super(user, point, direction, pieceProperties);
+    public Laser(User user, Position position, PieceProperties pieceProperties) {
+        super(user, position, pieceProperties);
     }
 
     public void shoot() {
-        pieceProperties.shoot(point, direction);
+        pieceProperties.shoot(position);
     }
 
     @Override

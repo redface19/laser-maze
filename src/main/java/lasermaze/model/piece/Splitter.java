@@ -10,8 +10,8 @@ public class Splitter extends Piece implements Penetable, Pieceable {
     private Reflectable reflectable;
     private Shootable shootable;
 
-    public Splitter(User user, Point point, Direction direction, PieceProperties pieceProperties) {
-        super(user, point, direction, pieceProperties);
+    public Splitter(User user, Position position, PieceProperties pieceProperties) {
+        super(user, position, pieceProperties);
     }
 
     @Override
@@ -27,12 +27,12 @@ public class Splitter extends Piece implements Penetable, Pieceable {
     @Override
     public void hit(LaserPointer laserPointer) {
         penetrate(laserPointer);
-        reflectable.reflect(laserPointer, direction);
+        reflectable.reflect(laserPointer, position);
     }
 
     @Override
     public void penetrate(LaserPointer laserPointer) {
         // 레이저 생성후 반사
-        shootable.shoot(point, direction);
+        shootable.shoot(position);
     }
 }

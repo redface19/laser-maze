@@ -1,12 +1,12 @@
 package lasermaze.model;
 
-public class LaserPointer {
-    private Point point;
-    private Direction direction;
+import lasermaze.model.piece.Position;
 
-    public LaserPointer(Point point, Direction direction) {
-        this.point = point;
-        this.direction = direction;
+public class LaserPointer {
+    private Position position;
+
+    public LaserPointer(Position position) {
+        this.position = position;
     }
 
     public void move() {

@@ -1,6 +1,5 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Board;
 import lasermaze.model.Direction;
 import lasermaze.model.Point;
 import lasermaze.model.Rotation;
@@ -13,34 +12,28 @@ public abstract class Piece implements Pieceable, Cloneable {
     private static final Logger log = getLogger(Piece.class);
 
     private User user;
-    protected Point point;
-    protected Direction direction;
+    protected Position position;
     protected PieceProperties pieceProperties;
 
-    public Piece(User user, Point point, Direction direction, PieceProperties pieceProperties) {
+    public Piece(User user, Position position, PieceProperties pieceProperties) {
         this.user = user;
-        this.point = point;
-        this.direction = direction;
+        this.position = position;
         this.pieceProperties = pieceProperties;
     }
 
     @Override
     public void move(Direction direction) {
-        pieceProperties.move(point, direction);
+        pieceProperties.move(position, direction);
     }
 
     @Override
     public void rotate(Rotation rotation) {
-        pieceProperties.rotate(point, direction, rotation);
+        pieceProperties.rotate(position, rotation);
     }
-
-//    public void terminated() {
-//        Board.deleteChess(point);
-//    }
 
     public Piece makeEnemy(Point point, User user) throws CloneNotSupportedException {
         Piece enemy = clone();
-        enemy.point = point;
+        enemy.position = position.getOppositePosition(point);
         enemy.user = user;
         return enemy;
     }
@@ -52,6 +45,10 @@ public abstract class Piece implements Pieceable, Cloneable {
 
     @Override
     public String toString() {
-        return "Piece[point=" + point + ", direction=" + direction + ", user=" + user + "]";
+        return "Piece{" +
+                "user=" + user +
+                ", position=" + position +
+                ", pieceProperties=" + pieceProperties +
+                '}';
     }
 }

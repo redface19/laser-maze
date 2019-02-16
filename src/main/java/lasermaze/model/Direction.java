@@ -23,10 +23,6 @@ public enum Direction {
         return null;
     }
 
-    public Direction rotate(Rotation rotation) {
-        return null;
-    }
-
     public Direction getRotatedDirection(Rotation rotation) {
         int operand = rotation.equals(Rotation.COUNTERCLOCKWISE)? -1 : 1;
         int newDirection = commandNumber + (2 * operand);
@@ -35,5 +31,9 @@ public enum Direction {
             return getDirection(newDirection - (Board.CHESSBOARD_SIZE * operand));
 
         return getDirection(newDirection);
+    }
+
+    public Direction getDiametricalDirection() {
+        return getRotatedDirection(Rotation.COUNTERCLOCKWISE).getRotatedDirection(Rotation.COUNTERCLOCKWISE);
     }
 }
