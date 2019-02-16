@@ -2,6 +2,7 @@ package lasermaze.model;
 
 import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.King;
+import lasermaze.model.piece.LaserPiece;
 import lasermaze.model.piece.NonLaserPiece;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,5 +66,11 @@ public class CommandTest {
     public void hasObstacle_장애물존재X() {
         Command command = new Command(new Point(4, 0), 3);
         assertThat(command.hasObstacle(board, Direction.EAST)).isFalse();
+    }
+
+    @Test(expected = NotSupportedException.class)
+    public void 레이저이동() {
+        Command command = new Command(new Point(7, 0), 3);
+        command.execute(board);
     }
 }

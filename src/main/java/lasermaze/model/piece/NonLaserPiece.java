@@ -1,7 +1,6 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.Direction;
-import lasermaze.model.NotSupportedException;
 import lasermaze.model.Point;
 import lasermaze.model.Rotation;
 import org.slf4j.Logger;
