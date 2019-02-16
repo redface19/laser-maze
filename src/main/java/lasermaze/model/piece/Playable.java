@@ -6,5 +6,5 @@ import lasermaze.model.Rotation;
 
 public interface Playable {
     void move(Point point, Direction direction);
-    void rotate(Direction direction, Rotation rotation);
+    void rotate(Point point, Direction direction, Rotation rotation);
 }

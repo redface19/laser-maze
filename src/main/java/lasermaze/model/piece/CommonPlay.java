@@ -12,7 +12,7 @@ public class CommonPlay implements Playable {
     }
 
     @Override
-    public void rotate(Direction direction, Rotation rotation) {
+    public void rotate(Point point, Direction direction, Rotation rotation) {
 
     }
 }

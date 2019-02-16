@@ -1,9 +1,6 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Direction;
-import lasermaze.model.NotSupportedException;
-import lasermaze.model.Point;
-import lasermaze.model.Rotation;
+import lasermaze.model.*;
 
 public class LaserPiece extends CommonPlay {
 
@@ -13,7 +10,11 @@ public class LaserPiece extends CommonPlay {
     }
 
     @Override
-    public void rotate(Direction direction, Rotation rotation) {
+    public void rotate(Point point, Direction direction, Rotation rotation) {
         Direction rotatedDirection = direction.getRotatedDirection(rotation);
+        if(Command.hasBarrier(point, rotatedDirection)) {
+            throw new NotSupportedException("Laser cannot be rotated");
+        }
+
     }
 }

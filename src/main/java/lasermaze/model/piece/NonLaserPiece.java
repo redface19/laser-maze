@@ -16,7 +16,7 @@ public class NonLaserPiece extends CommonPlay {
     }
 
     @Override
-    public void rotate(Direction direction, Rotation rotation) {
+    public void rotate(Point point, Direction direction, Rotation rotation) {
         direction.rotate(rotation);
         // 시계 방향 num - 8
         // 반시계 num + 8

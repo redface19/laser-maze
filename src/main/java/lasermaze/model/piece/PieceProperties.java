@@ -22,8 +22,8 @@ public class PieceProperties {
         playable.move(point, direction);
     }
 
-    public void rotate(Direction direction, Rotation rotation) {
-        playable.rotate(direction, rotation);
+    public void rotate(Point point, Direction direction, Rotation rotation) {
+        playable.rotate(point, direction, rotation);
     }
 
     public void shoot(Point point, Direction direction) {

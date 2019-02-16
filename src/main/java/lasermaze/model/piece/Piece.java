@@ -31,7 +31,7 @@ public abstract class Piece implements Pieceable, Cloneable {
 
     @Override
     public void rotate(Rotation rotation) {
-        pieceProperties.rotate(direction, rotation);
+        pieceProperties.rotate(point, direction, rotation);
     }
 
 //    public void terminated() {
