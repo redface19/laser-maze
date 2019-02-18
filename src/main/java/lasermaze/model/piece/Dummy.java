@@ -3,7 +3,7 @@ package lasermaze.model.piece;
 import lasermaze.model.LaserPointer;
 import lasermaze.model.user.User;
 
-public class Dummy extends Piece implements Penetable {
+public class Dummy extends Piece {
 
     public Dummy(User user, Position position, PieceProperties pieceProperties) {
         super(user, position, pieceProperties);
@@ -21,11 +21,6 @@ public class Dummy extends Piece implements Penetable {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-        penetrate(laserPointer);
-    }
-
-    @Override
-    public void penetrate(LaserPointer laserPointer) {
-
+//        laserPointer.move
     }
 }

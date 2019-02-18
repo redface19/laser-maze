@@ -7,7 +7,8 @@ public enum PropertyBundle {
     KING_PROPRTY(new PieceProperties.PiecesPropertiesBuilder(new NonLaserPiece()).build()),
     SPLITTER_PROPRTY(new PieceProperties.PiecesPropertiesBuilder(new NonLaserPiece())
                     .applyShootable(new Shooter())
-                    .applyReflectable(new DiagonalReflect()).build()),
+                    .applyReflectable(new DiagonalReflect())
+                    .applyPenetable(new Penetrate()).build()),
     TRIANGLE_KNIGHT_PROPERTY(new PieceProperties.PiecesPropertiesBuilder(new NonLaserPiece())
                     .applyReflectable(new DiagonalReflect()).build()),
     SQUARE_KNIGHT_PROPERTY(new PieceProperties.PiecesPropertiesBuilder(new NonLaserPiece())

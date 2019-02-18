@@ -3,10 +3,7 @@ package lasermaze.model.piece;
 import lasermaze.model.LaserPointer;
 import lasermaze.model.user.User;
 
-public class Splitter extends Piece implements Penetable, Pieceable {
-
-    private Reflectable reflectable;
-    private Shootable shootable;
+public class Splitter extends Piece {
 
     public Splitter(User user, Position position, PieceProperties pieceProperties) {
         super(user, position, pieceProperties);
@@ -24,13 +21,8 @@ public class Splitter extends Piece implements Penetable, Pieceable {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-        penetrate(laserPointer);
-        reflectable.reflect(laserPointer, position);
+//        penetrate(laserPointer);
+//        reflectable.reflect(laserPointer, position);
     }
 
-    @Override
-    public void penetrate(LaserPointer laserPointer) {
-        // 레이저 생성후 반사
-//        shootable.shoot(board, position);
-    }
 }
