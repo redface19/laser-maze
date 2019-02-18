@@ -11,8 +11,8 @@ public class Splitter extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-//        penetrate(laserPointer);
-//        reflectable.reflect(laserPointer, position);
+        pieceProperties.penetrate(laserPointer, position);
+        pieceProperties.reflect(laserPointer, position);
     }
 
 }

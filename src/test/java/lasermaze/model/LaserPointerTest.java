@@ -19,6 +19,7 @@ public class LaserPointerTest {
         LaserPointer laserPointer = new LaserPointer(board, new Position(Direction.EAST, new Point(7, 0)));
         laserPointer.move();
         log.debug("laserPoint : {}", laserPointer);
+        log.debug("laser : {}", board.getChessSquare(new Point(7, 0)));
     }
 
     @Test

@@ -3,5 +3,5 @@ package lasermaze.model.piece;
 import lasermaze.model.LaserPointer;
 
 public interface Penetable {
-    void penetrate(LaserPointer laserPointer);
+    void penetrate(LaserPointer laserPointer, Position position);
 }

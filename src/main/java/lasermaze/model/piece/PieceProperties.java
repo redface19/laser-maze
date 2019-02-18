@@ -36,6 +36,10 @@ public class PieceProperties {
         reflectable.reflect(laserPointer, position);
     }
 
+    public void penetrate(LaserPointer laserPointer, Position position) {
+        penetable.penetrate(laserPointer, position);
+    }
+
     public static class PiecesPropertiesBuilder {
         private Playable playable;
         private Reflectable reflectable;

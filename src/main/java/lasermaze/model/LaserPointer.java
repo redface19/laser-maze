@@ -11,7 +11,6 @@ public class LaserPointer {
         this.position = position;
     }
 
-
     public void move() {
         if(!position.isOutOfBound()) {
             position.move();
@@ -29,6 +28,10 @@ public class LaserPointer {
 
     public void reflect(Position piecePosition) {
         position.reflect(piecePosition);
+    }
+
+    public LaserPointer generateNewLaserPointer(Position piecePosition) {
+        return new LaserPointer(board, piecePosition.generateNewPosition(position));
     }
 
     @Override

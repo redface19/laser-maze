@@ -32,6 +32,7 @@ public class CommandTest {
         command.execute(board, DOBY);
         assertThat(board.getChessSquare(4, 1) instanceof King).isTrue();
         assertThat(board.getChessSquare(4, 0) instanceof Dummy).isTrue();
+        log.debug("laser : {}", board.getChessSquare(new Point(7, 0)));
     }
 
 

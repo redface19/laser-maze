@@ -45,6 +45,10 @@ public class Point {
         return this;
     }
 
+    public Point generateNewPoint() {
+        return new Point(row, col);
+    }
+
     public int getRow() {
         return row;
     }

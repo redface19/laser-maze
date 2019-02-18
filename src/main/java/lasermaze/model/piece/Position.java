@@ -17,6 +17,14 @@ public class Position {
         this.point = point;
     }
 
+    public Position generateNewPosition() {
+        return new Position(this.direction, point.generateNewPoint());
+    }
+
+    public Position generateNewPosition(Position laserPosition) {
+        return new Position(laserPosition.direction, point.generateNewPoint());
+    }
+
     public Position getOppositePosition(Point point) {
         return new Position(direction.getDiametricalDirection() , point);
     }
