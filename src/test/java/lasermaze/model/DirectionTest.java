@@ -41,4 +41,10 @@ public class DirectionTest {
         Rotation rotation = Rotation.COUNTERCLOCKWISE;
         assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.NORTH);
     }
+
+    @Test
+    public void getDiametricalDirection() {
+        Direction direction = Direction.NORTHEAST;
+        assertThat(direction.getDiametricalDirection()).isEqualTo(Direction.SOUTHWEST);
+    }
 }

@@ -20,11 +20,6 @@ public class Laser extends Piece {
     }
 
     @Override
-    public boolean canDead() {
-        return false;
-    }
-
-    @Override
     public void hit(LaserPointer laserPointer) {
     }
 }

@@ -7,8 +7,6 @@ import lasermaze.model.Rotation;
 public interface Pieceable {
     boolean isDefaultChessPiece();
 
-    boolean canDead();
-
     void hit(LaserPointer laserPointer);
 
     void move(Direction direction);

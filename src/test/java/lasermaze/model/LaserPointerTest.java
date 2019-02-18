@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 
 import static lasermaze.model.user.UserTest.BRAD;
 import static lasermaze.model.user.UserTest.DOBY;
-import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -16,8 +15,8 @@ public class LaserPointerTest {
     @Test
     public void move() {
         Board board = new Board(DOBY, BRAD);
-        LaserPointer laserPointer = new LaserPointer(new Position(Direction.EAST, new Point(7, 0)));
-        laserPointer.move(board);
+        LaserPointer laserPointer = new LaserPointer(board, new Position(Direction.EAST, new Point(7, 0)));
+        laserPointer.move();
         log.debug("laserPoint : {}", laserPointer);
     }
 }

@@ -7,7 +7,7 @@ public class Shooter implements Shootable {
 
     @Override
     public void shoot(Board board, Position position) {
-        LaserPointer laserPointer = new LaserPointer(position);
-        laserPointer.move(board);
+        LaserPointer laserPointer = new LaserPointer(board, position);
+        laserPointer.move();
     }
 }

@@ -2,8 +2,12 @@ package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
 import lasermaze.model.user.User;
+import org.slf4j.Logger;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class Knight extends Piece {
+    private static final Logger log = getLogger(Knight.class);
 
     public Knight(User user, Position position, PieceProperties pieceProperties) {
         super(user, position, pieceProperties);
@@ -16,16 +20,9 @@ public class Knight extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-        if (canDead()) {
+        log.debug("삼각기사 도착");
 //            terminated();
-            return;
-        }
         pieceProperties.reflect(laserPointer, position);
-    }
-
-    @Override
-    public boolean canDead() {
-        return false;
     }
 
 }

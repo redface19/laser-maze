@@ -15,12 +15,7 @@ public class Dummy extends Piece {
     }
 
     @Override
-    public boolean canDead() {
-        return false;
-    }
-
-    @Override
     public void hit(LaserPointer laserPointer) {
-//        laserPointer.move
+        laserPointer.move();
     }
 }
