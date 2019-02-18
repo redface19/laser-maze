@@ -14,11 +14,6 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean isDefaultChessPiece() {
-        return false;
-    }
-
-    @Override
     public void hit(LaserPointer laserPointer) {
         if (laserPointer.canDead(position)) {
             laserPointer.removePiece();

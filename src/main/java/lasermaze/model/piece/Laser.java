@@ -15,11 +15,6 @@ public class Laser extends Piece {
     }
 
     @Override
-    public boolean isDefaultChessPiece() {
-        return false;
-    }
-
-    @Override
     public void hit(LaserPointer laserPointer) {
     }
 }

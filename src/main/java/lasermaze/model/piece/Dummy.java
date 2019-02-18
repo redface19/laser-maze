@@ -10,11 +10,6 @@ public class Dummy extends Piece {
     }
 
     @Override
-    public boolean isDefaultChessPiece() {
-        return true;
-    }
-
-    @Override
     public void hit(LaserPointer laserPointer) {
         laserPointer.move();
     }

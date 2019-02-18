@@ -10,11 +10,6 @@ public class Splitter extends Piece {
     }
 
     @Override
-    public boolean isDefaultChessPiece() {
-        return false;
-    }
-
-    @Override
     public void hit(LaserPointer laserPointer) {
 //        penetrate(laserPointer);
 //        reflectable.reflect(laserPointer, position);
