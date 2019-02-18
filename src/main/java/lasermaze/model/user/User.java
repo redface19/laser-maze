@@ -1,5 +1,7 @@
 package lasermaze.model.user;
 
+import java.util.Objects;
+
 public class User {
     public static final User DUMMY_USER = new DummyUser();
 
@@ -24,5 +26,13 @@ public class User {
         boolean isDummyUser() {
             return true;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name);
     }
 }

@@ -2,6 +2,7 @@ package lasermaze.model;
 
 import lasermaze.model.piece.Laser;
 import lasermaze.model.piece.Piece;
+import lasermaze.model.user.User;
 import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -18,9 +19,14 @@ public class Command {
         this.commandNumber = commandNumber;
     }
 
-    public void execute(Board board) {
+    public void execute(Board board, User user) {
         Piece piece = board.getChessSquare(point);
-        if (commandNumber <= 8) {
+        if(!piece.isSameUser(user)) {
+            throw new NotSupportedException("this user cannot control this piece");
+        }
+
+        int countOfDirection = Direction.values().length;
+        if (commandNumber < countOfDirection) {
             Direction direction = Direction.getDirection(commandNumber);
             if(hasBarrier(point, direction) || hasObstacle(board, direction)) {
                 throw new NotSupportedException("Can not move Chess Piece");
@@ -29,9 +35,11 @@ public class Command {
             board.swap(point, direction);
         }
 
-        if (commandNumber > 8) {
+        if (commandNumber >= countOfDirection) {
             piece.rotate(Rotation.getRotation(commandNumber));
         }
+
+
     }
 
     public static boolean hasBarrier(Point point, Direction direction) {

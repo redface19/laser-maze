@@ -9,6 +9,7 @@ public class LaserPointer {
         this.position = position;
     }
 
+
     public void move() {
 
     }

@@ -1,9 +1,6 @@
 package lasermaze.model;
 
-import lasermaze.model.piece.Dummy;
-import lasermaze.model.piece.King;
-import lasermaze.model.piece.LaserPiece;
-import lasermaze.model.piece.NonLaserPiece;
+import lasermaze.model.piece.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -26,13 +23,13 @@ public class CommandTest {
     @Test
     public void command_생성() {
         Command command = new Command(new Point(4, 0), 3);
-        command.execute(board);
+        command.execute(board, DOBY);
     }
 
     @Test
     public void 정상적으로_이동() {
         Command command = new Command(new Point(4, 0), 3);
-        command.execute(board);
+        command.execute(board, DOBY);
         assertThat(board.getChessSquare(4, 1) instanceof King).isTrue();
         assertThat(board.getChessSquare(4, 0) instanceof Dummy).isTrue();
     }
@@ -73,6 +70,26 @@ public class CommandTest {
     @Test(expected = NotSupportedException.class)
     public void 레이저이동() {
         Command command = new Command(new Point(7, 0), 3);
-        command.execute(board);
+        command.execute(board, DOBY);
+    }
+
+    @Test(expected = NotSupportedException.class)
+    public void isSameUser() {
+        Board board = new Board(DOBY, BRAD);
+        new Command(new Point(4, 7), 2).execute(board, DOBY);
+    }
+
+    @Test
+    public void getLaser() {
+        Board board = new Board(DOBY, BRAD);
+        Piece piece = board.getLaser(DOBY);
+        assertThat(board.getChessSquare(new Point(7, 0))).isEqualTo(piece);
+    }
+
+    @Test
+    public void getLaser2() {
+        Board board = new Board(DOBY, BRAD);
+        Piece piece = board.getLaser(BRAD);
+        assertThat(board.getChessSquare(new Point(0, 7))).isEqualTo(piece);
     }
 }

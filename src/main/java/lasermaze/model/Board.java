@@ -24,7 +24,7 @@ public class Board {
         putSymmetryPieces(7, 4, user2, new Knight(user1, new Position(Direction.NORTHWEST, new Point(7, 4)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
         putSymmetryPieces(1, 7, user2, new Knight(user1, new Position(Direction.NORTHWEST, new Point(1, 7)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
         putSymmetryPieces(2, 0, user2, new Knight(user1, new Position(Direction.NORTHEAST, new Point(2, 0)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
-        putSymmetryPieces(3, 3, user2, new Knight(user1, new Position(Direction.NORTHEAST, new Point(3, 3)),  PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
+        putSymmetryPieces(3, 3, user2, new Knight(user1, new Position(Direction.NORTHEAST, new Point(3, 3)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
         putSymmetryPieces(4, 3, user2, new Knight(user1, new Position(Direction.SOUTHEAST, new Point(4, 3)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
         putSymmetryPieces(3, 0, user2, new Knight(user1, new Position(Direction.EAST, new Point(3, 0)), PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
         putSymmetryPieces(5, 0, user2, new Knight(user1, new Position(Direction.EAST, new Point(5, 0)), PropertyBundle.SQUARE_KNIGHT_PROPERTY.getProperty()));
@@ -75,5 +75,14 @@ public class Board {
 
     public boolean isDummy(Point nextPoint) {
         return getChessSquare(nextPoint) instanceof Dummy;
+    }
+
+    public Piece getLaser(User user) {
+        for (Piece[] chessSquare : chessSquares) {
+            for (Piece piece : chessSquare) {
+                if (piece.isSameUser(user) && piece instanceof Laser) return piece;
+            }
+        }
+        throw new NotSupportedException("cannot find laser piece");
     }
 }

@@ -7,9 +7,9 @@ import lasermaze.model.user.User;
 
 public class Game {
 
-    Board board;
-    User user1;
-    User user2;
+    private Board board;
+    private User user1;
+    private User user2;
 
     public Game(User user1, User user2) {
         this.user1 = user1;
@@ -23,7 +23,8 @@ public class Game {
             int[] input = {4, 0, 3};
 
             Command command = new Command(new Point(input[0], input[1]), input[2]);
-            command.execute(board);
+            // test Data - user1
+            command.execute(board, user1);
         }
     }
 }
