@@ -13,8 +13,10 @@ public class LaserPointer {
 
 
     public void move() {
-        position.move();
-        position.getNextPiece(board).hit(this);
+        if(!position.isOutOfBound()) {
+            position.move();
+            position.getNextPiece(board).hit(this);
+        }
     }
 
     public void removePiece() {

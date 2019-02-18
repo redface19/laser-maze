@@ -19,4 +19,12 @@ public class PositionTest {
         laserPosition.reflect(piecePosition);
         log.debug(laserPosition.toString());
     }
+
+    @Test
+    public void reflect2() {
+        Position laserPosition = new Position(Direction.WEST, new Point(3, 0));
+        Position piecePosition = new Position(Direction.EAST, new Point(3, 0));
+        laserPosition.reflect(piecePosition);
+        log.debug(laserPosition.toString());
+    }
 }

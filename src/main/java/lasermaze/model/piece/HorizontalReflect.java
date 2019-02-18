@@ -5,7 +5,8 @@ import lasermaze.model.LaserPointer;
 public class HorizontalReflect implements Reflectable {
 
     @Override
-    public void reflect(LaserPointer laserPointer, Position position) {
-
+    public void reflect(LaserPointer laserPointer, Position piecePosition) {
+        laserPointer.reflect(piecePosition);
+        laserPointer.move();
     }
 }

@@ -12,7 +12,7 @@ public class LaserPiece extends CommonPlay {
     @Override
     public void rotate(Position position, Rotation rotation) {
         Direction rotatedDirection = position.getRotatedDirection(rotation);
-        if(position.hasBarrier(rotatedDirection)) {
+        if(position.isOutOfBound(rotatedDirection)) {
             throw new NotSupportedException("Laser cannot be rotated");
         }
         position.rotate(rotatedDirection);

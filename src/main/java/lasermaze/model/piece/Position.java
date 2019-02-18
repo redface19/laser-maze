@@ -29,8 +29,12 @@ public class Position {
         this.direction = rotatedDirection;
     }
 
-    public boolean hasBarrier(Direction rotatedDirection) {
+    public boolean isOutOfBound(Direction rotatedDirection) {
         return point.getNextPoint(rotatedDirection).isOutOfBound();
+    }
+
+    public boolean isOutOfBound() {
+        return point.getNextPoint(direction).isOutOfBound();
     }
 
     public void move(Direction direction) {
@@ -55,6 +59,7 @@ public class Position {
 
     public void reflect(Position piecePosition) {
         if(piecePosition.direction.isSquareKnight()) {
+            direction = piecePosition.direction;
             return;
         }
         Rotation reflectedRotation = direction.getTriangleRotation(piecePosition.direction);
