@@ -77,10 +77,10 @@ public class Board {
         return getChessSquare(nextPoint) instanceof Dummy;
     }
 
-    public Piece getLaser(User user) {
+    public Laser getLaser(User user) {
         for (Piece[] chessSquare : chessSquares) {
             for (Piece piece : chessSquare) {
-                if (piece.isSameUser(user) && piece instanceof Laser) return piece;
+                if (piece.isSameUser(user) && piece instanceof Laser) return (Laser)piece;
             }
         }
         throw new NotSupportedException("cannot find laser piece");

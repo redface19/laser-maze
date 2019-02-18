@@ -1,8 +1,6 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Direction;
 import lasermaze.model.LaserPointer;
-import lasermaze.model.Point;
 import lasermaze.model.user.User;
 
 public class Splitter extends Piece implements Penetable, Pieceable {
@@ -33,6 +31,6 @@ public class Splitter extends Piece implements Penetable, Pieceable {
     @Override
     public void penetrate(LaserPointer laserPointer) {
         // 레이저 생성후 반사
-        shootable.shoot(position);
+//        shootable.shoot(board, position);
     }
 }

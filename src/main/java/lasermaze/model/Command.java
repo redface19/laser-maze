@@ -39,7 +39,8 @@ public class Command {
             piece.rotate(Rotation.getRotation(commandNumber));
         }
 
-
+        Laser laser = board.getLaser(user);
+        laser.shoot(board);
     }
 
     public static boolean hasBarrier(Point point, Direction direction) {

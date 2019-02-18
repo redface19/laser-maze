@@ -31,4 +31,20 @@ public class Position {
     public void move(Direction direction) {
         point.move(direction);
     }
+
+    public void move() {
+        point.move(direction);
+    }
+
+    public Pieceable getNextPiece(Board board) {
+        return board.getChessSquare(point);
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "direction=" + direction +
+                ", point=" + point +
+                '}';
+    }
 }

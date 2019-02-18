@@ -10,7 +10,15 @@ public class LaserPointer {
     }
 
 
-    public void move() {
+    public void move(Board board) {
+        position.move();
+        position.getNextPiece(board).hit(this);
+    }
 
+    @Override
+    public String toString() {
+        return "LaserPointer{" +
+                "position=" + position +
+                '}';
     }
 }

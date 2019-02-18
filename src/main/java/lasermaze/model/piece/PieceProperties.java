@@ -26,8 +26,8 @@ public class PieceProperties {
         playable.rotate(position, rotation);
     }
 
-    public void shoot(Position position) {
-        shootable.shoot(position);
+    public void shoot(Board board, Position position) {
+        shootable.shoot(board, position);
     }
 
     public void reflect(LaserPointer laserPointer, Position position) {

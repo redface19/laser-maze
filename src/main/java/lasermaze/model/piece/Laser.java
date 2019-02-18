@@ -1,8 +1,7 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Direction;
+import lasermaze.model.Board;
 import lasermaze.model.LaserPointer;
-import lasermaze.model.Point;
 import lasermaze.model.user.User;
 
 public class Laser extends Piece {
@@ -11,8 +10,8 @@ public class Laser extends Piece {
         super(user, position, pieceProperties);
     }
 
-    public void shoot() {
-        pieceProperties.shoot(position);
+    public void shoot(Board board) {
+        pieceProperties.shoot(board, position);
     }
 
     @Override

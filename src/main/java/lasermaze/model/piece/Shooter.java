@@ -1,13 +1,13 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Direction;
+import lasermaze.model.Board;
 import lasermaze.model.LaserPointer;
-import lasermaze.model.Point;
 
 public class Shooter implements Shootable {
 
     @Override
-    public LaserPointer shoot(Position position) {
-        return new LaserPointer(position);
+    public void shoot(Board board, Position position) {
+        LaserPointer laserPointer = new LaserPointer(position);
+        laserPointer.move(board);
     }
 }
