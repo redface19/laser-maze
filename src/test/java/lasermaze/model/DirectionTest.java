@@ -47,4 +47,64 @@ public class DirectionTest {
         Direction direction = Direction.NORTHEAST;
         assertThat(direction.getDiametricalDirection()).isEqualTo(Direction.SOUTHWEST);
     }
+
+    @Test
+    public void getDiametricalNumber() {
+        Direction direction = Direction.NORTH;
+        assertThat(direction.getDiametricalNumber()).isEqualTo(5);
+    }
+
+    @Test
+    public void getDiametricalNumber2() {
+        Direction direction = Direction.WEST;
+        assertThat(direction.getDiametricalNumber()).isEqualTo(3);
+    }
+
+    @Test
+    public void canDead() {
+        Direction direction = Direction.NORTH;
+        assertThat(direction.canDead(Direction.SOUTH)).isEqualTo(false);
+    }
+
+    @Test
+    public void canDead2() {
+        Direction direction = Direction.NORTH;
+        assertThat(direction.canDead(Direction.EAST)).isEqualTo(true);
+    }
+
+    @Test
+    public void canDead3() {
+        Direction direction = Direction.EAST;
+        assertThat(direction.canDead(Direction.NORTHWEST)).isEqualTo(false);
+    }
+
+    @Test
+    public void canDead4() {
+        Direction direction = Direction.EAST;
+        assertThat(direction.canDead(Direction.NORTHEAST)).isEqualTo(true);
+    }
+
+    @Test
+    public void getTriangleRotation() {
+        Direction laserDirection = Direction.SOUTH;
+        assertThat(laserDirection.getTriangleRotation(Direction.NORTHWEST)).isEqualTo(Rotation.CLOCKWISE);
+    }
+
+    @Test
+    public void getTriangleRotation2() {
+        Direction laserDirection = Direction.SOUTH;
+        assertThat(laserDirection.getTriangleRotation(Direction.NORTHEAST)).isEqualTo(Rotation.COUNTERCLOCKWISE);
+    }
+
+    @Test
+    public void getTriangleRotation3() {
+        Direction laserDirection = Direction.EAST;
+        assertThat(laserDirection.getTriangleRotation(Direction.NORTHEAST)).isEqualTo(Rotation.COUNTERCLOCKWISE);
+    }
+
+    @Test
+    public void getTriangleRotation4() {
+        Direction laserDirection = Direction.WEST;
+        assertThat(laserDirection.getTriangleRotation(Direction.SOUTHEAST)).isEqualTo(Rotation.COUNTERCLOCKWISE);
+    }
 }

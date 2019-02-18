@@ -1,5 +1,6 @@
 package lasermaze.model;
 
+import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.Position;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -18,5 +19,13 @@ public class LaserPointerTest {
         LaserPointer laserPointer = new LaserPointer(board, new Position(Direction.EAST, new Point(7, 0)));
         laserPointer.move();
         log.debug("laserPoint : {}", laserPointer);
+    }
+
+    @Test
+    public void removePiece() {
+        Board board = new Board(DOBY, BRAD);
+        LaserPointer laserPointer = new LaserPointer(board, new Position(Direction.EAST, new Point(3, 3)));
+        laserPointer.removePiece();
+        assertThat(board.getChessSquare(3, 3) instanceof Dummy).isTrue();
     }
 }

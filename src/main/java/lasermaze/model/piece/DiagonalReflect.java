@@ -1,15 +1,17 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
+import org.slf4j.Logger;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class DiagonalReflect implements Reflectable {
-    @Override
-    public void reflect(LaserPointer laserPointer, Position position) {
-
-    }
+    private static final Logger log = getLogger(DiagonalReflect.class);
 
     @Override
-    public boolean canDead(LaserPointer laserPointer, Position position) {
-        return false;
+    public void reflect(LaserPointer laserPointer, Position piecePosition) {
+        laserPointer.reflect(piecePosition);
+        log.debug("삼각기사에서 laserPoint : {}", laserPointer);
+        laserPointer.move();
     }
 }

@@ -29,10 +29,6 @@ public class Point {
         this.col = col;
     }
 
-    public void delete(Piece[][] chessSquares) {
-        //chessSquares[row][col] = new Dummy(User.DUMMY_USER, new CommonPlay());
-    }
-
     public void move(Direction direction) {
         modify(direction);
     }

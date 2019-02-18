@@ -8,9 +8,4 @@ public class HorizontalReflect implements Reflectable {
     public void reflect(LaserPointer laserPointer, Position position) {
 
     }
-
-    @Override
-    public boolean canDead(LaserPointer laserPointer, Position position) {
-        return false;
-    }
 }

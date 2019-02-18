@@ -33,7 +33,27 @@ public enum Direction {
         return getDirection(newDirection);
     }
 
+    public boolean canDead(Direction pieceDirection) {
+        if(pieceDirection.isSquareKnight()) {
+            return pieceDirection.commandNumber != getDiametricalNumber();
+        }
+        return pieceDirection.commandNumber + 1 == commandNumber || pieceDirection.commandNumber - 1 == commandNumber;
+    }
+
+    public boolean isSquareKnight() {
+        return commandNumber % 2 == 1;
+    }
+
     public Direction getDiametricalDirection() {
         return getRotatedDirection(Rotation.COUNTERCLOCKWISE).getRotatedDirection(Rotation.COUNTERCLOCKWISE);
+    }
+
+    public int getDiametricalNumber() {
+        return getDiametricalDirection().commandNumber;
+    }
+
+    public Rotation getTriangleRotation(Direction pieceDirection) {
+        if(pieceDirection.commandNumber - commandNumber == 3) return Rotation.CLOCKWISE;
+        return Rotation.COUNTERCLOCKWISE;
     }
 }

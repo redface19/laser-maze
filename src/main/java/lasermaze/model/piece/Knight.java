@@ -20,8 +20,10 @@ public class Knight extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-        log.debug("삼각기사 도착");
-//            terminated();
+        if (laserPointer.canDead(position)) {
+            laserPointer.removePiece();
+            return;
+        }
         pieceProperties.reflect(laserPointer, position);
     }
 

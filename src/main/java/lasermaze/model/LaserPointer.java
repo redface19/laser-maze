@@ -17,6 +17,18 @@ public class LaserPointer {
         position.getNextPiece(board).hit(this);
     }
 
+    public void removePiece() {
+        board.deleteChess(position);
+    }
+
+    public boolean canDead(Position piecePosition) {
+        return position.canDead(piecePosition);
+    }
+
+    public void reflect(Position piecePosition) {
+        position.reflect(piecePosition);
+    }
+
     @Override
     public String toString() {
         return "LaserPointer{" +

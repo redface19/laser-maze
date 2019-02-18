@@ -38,7 +38,7 @@ public class Board {
         }
     }
 
-    private void putDummy(int row, int col) {
+    public void putDummy(int row, int col) {
         chessSquares[row][col] = new Dummy(User.DUMMY_USER, new Position(Direction.NONE, new Point(row, col)), PropertyBundle.DUMMY_PROPERTY.getProperty());
     }
 
@@ -56,8 +56,8 @@ public class Board {
         putDummy(prevPoint.getRow(), prevPoint.getCol());
     }
 
-    public void deleteChess(Point point) {
-        point.delete(chessSquares);
+    public void deleteChess(Position position) {
+        position.delete(chessSquares);
     }
 
     public void putSymmetryPieces(int row, int col, User user2, Piece piece) {
