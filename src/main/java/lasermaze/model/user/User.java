@@ -6,12 +6,14 @@ public class User {
     public static final User DUMMY_USER = new DummyUser();
 
     private String name;
+    private boolean isWinner;
+
 
     public User(String name) {
         this.name = name;
     }
 
-    boolean isDummyUser() {
+    public boolean isDummyUser() {
         return false;
     }
 
@@ -23,7 +25,7 @@ public class User {
         }
 
         @Override
-        boolean isDummyUser() {
+        public boolean isDummyUser() {
             return true;
         }
     }

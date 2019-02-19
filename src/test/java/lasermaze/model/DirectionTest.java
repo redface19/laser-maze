@@ -36,6 +36,13 @@ public class DirectionTest {
 
     @Test
     public void getRotatedDirection5() {
+        Direction direction = Direction.NORTHEAST;
+        Rotation rotation = Rotation.COUNTERCLOCKWISE;
+        assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.NORTHWEST);
+    }
+
+    @Test
+    public void getRotatedDirection6() {
         Direction direction = Direction.EAST;
         Rotation rotation = Rotation.COUNTERCLOCKWISE;
         assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.NORTH);

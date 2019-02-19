@@ -27,7 +27,7 @@ public enum Direction {
         int operand = rotation.equals(Rotation.COUNTERCLOCKWISE)? -1 : 1;
         int newDirection = commandNumber + (2 * operand);
 
-        if(newDirection < 0 || newDirection > Board.CHESSBOARD_SIZE)
+        if(newDirection <= 0 || newDirection > Board.CHESSBOARD_SIZE)
             return getDirection(newDirection - (Board.CHESSBOARD_SIZE * operand));
 
         return getDirection(newDirection);
