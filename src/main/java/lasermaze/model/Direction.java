@@ -33,11 +33,11 @@ public enum Direction {
         return getDirection(newDirection);
     }
 
-    public boolean canDead(Direction pieceDirection) {
+    public boolean isReflectable(Direction pieceDirection) {
         if(pieceDirection.isSquareKnight()) {
-            return pieceDirection.commandNumber != getDiametricalNumber();
+            return pieceDirection.commandNumber == getDiametricalNumber();
         }
-        return pieceDirection.commandNumber + 1 == commandNumber || pieceDirection.commandNumber - 1 == commandNumber;
+        return pieceDirection.commandNumber + 1 != commandNumber && pieceDirection.commandNumber - 1 != commandNumber;
     }
 
     public boolean isSquareKnight() {

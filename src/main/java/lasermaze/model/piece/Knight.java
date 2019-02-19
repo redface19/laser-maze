@@ -15,7 +15,7 @@ public class Knight extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-        if (laserPointer.canDead(position)) {
+        if (laserPointer.canRemove(position)) {
             laserPointer.removePiece();
             return;
         }

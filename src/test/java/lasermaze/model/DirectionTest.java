@@ -2,7 +2,6 @@ package lasermaze.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DirectionTest {
@@ -63,25 +62,25 @@ public class DirectionTest {
     @Test
     public void canDead() {
         Direction direction = Direction.NORTH;
-        assertThat(direction.canDead(Direction.SOUTH)).isEqualTo(false);
+        assertThat(!direction.isReflectable(Direction.SOUTH)).isEqualTo(false);
     }
 
     @Test
     public void canDead2() {
         Direction direction = Direction.NORTH;
-        assertThat(direction.canDead(Direction.EAST)).isEqualTo(true);
+        assertThat(!direction.isReflectable(Direction.EAST)).isEqualTo(true);
     }
 
     @Test
     public void canDead3() {
         Direction direction = Direction.EAST;
-        assertThat(direction.canDead(Direction.NORTHWEST)).isEqualTo(false);
+        assertThat(!direction.isReflectable(Direction.NORTHWEST)).isEqualTo(false);
     }
 
     @Test
     public void canDead4() {
         Direction direction = Direction.EAST;
-        assertThat(direction.canDead(Direction.NORTHEAST)).isEqualTo(true);
+        assertThat(!direction.isReflectable(Direction.NORTHEAST)).isEqualTo(true);
     }
 
     @Test

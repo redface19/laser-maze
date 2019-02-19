@@ -22,8 +22,8 @@ public class LaserPointer {
         board.deleteChess(position);
     }
 
-    public boolean canDead(Position piecePosition) {
-        return position.canDead(piecePosition);
+    public boolean canRemove(Position piecePosition) {
+        return !position.isReflectable(piecePosition);
     }
 
     public void reflect(Position piecePosition) {

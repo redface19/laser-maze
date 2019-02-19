@@ -61,8 +61,8 @@ public class Position {
         chessSquares[point.getRow()][point.getCol()] = new Dummy(User.DUMMY_USER, this, PropertyBundle.DUMMY_PROPERTY.getProperty());
     }
 
-    public boolean canDead(Position piecePosition) {
-        return direction.canDead(piecePosition.direction);
+    public boolean isReflectable(Position piecePosition) {
+        return direction.isReflectable(piecePosition.direction);
     }
 
     public void reflect(Position piecePosition) {
