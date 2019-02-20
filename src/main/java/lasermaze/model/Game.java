@@ -1,8 +1,8 @@
-package lasermaze.model.piece;
+package lasermaze.model;
 
-import lasermaze.model.Board;
-import lasermaze.model.Command;
-import lasermaze.model.Point;
+import lasermaze.model.piece.common.Point;
+import lasermaze.model.piece.King;
+import lasermaze.model.piece.Piece;
 import lasermaze.model.user.User;
 
 public class Game {

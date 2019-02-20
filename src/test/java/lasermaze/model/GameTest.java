@@ -1,6 +1,6 @@
-package lasermaze.model.piece;
+package lasermaze.model;
 
-import lasermaze.model.Board;
+import lasermaze.model.piece.Piece;
 import lasermaze.model.user.User;
 import org.junit.Test;
 

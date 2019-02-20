@@ -1,6 +1,10 @@
 package lasermaze.model;
 
-import lasermaze.model.piece.*;
+import lasermaze.model.piece.Dummy;
+import lasermaze.model.piece.King;
+import lasermaze.model.piece.Piece;
+import lasermaze.model.piece.common.Direction;
+import lasermaze.model.piece.common.Point;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;

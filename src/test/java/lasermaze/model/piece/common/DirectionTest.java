@@ -1,4 +1,4 @@
-package lasermaze.model;
+package lasermaze.model.piece.common;
 
 import org.junit.Test;
 

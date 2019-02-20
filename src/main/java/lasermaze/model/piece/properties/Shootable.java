@@ -1,7 +1,7 @@
-package lasermaze.model.piece;
+package lasermaze.model.piece.properties;
 
 import lasermaze.model.Board;
-import lasermaze.model.LaserPointer;
+import lasermaze.model.piece.common.Position;
 
 public interface Shootable {
     void shoot(Board board, Position position);

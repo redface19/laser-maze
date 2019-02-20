@@ -1,7 +1,9 @@
 package lasermaze.model;
 
 import lasermaze.model.piece.Dummy;
-import lasermaze.model.piece.Position;
+import lasermaze.model.piece.common.Direction;
+import lasermaze.model.piece.common.Point;
+import lasermaze.model.piece.common.Position;
 import org.junit.Test;
 import org.slf4j.Logger;
 

@@ -1,6 +1,9 @@
-package lasermaze.model.piece;
+package lasermaze.model.piece.properties;
 
 import lasermaze.model.*;
+import lasermaze.model.piece.common.Direction;
+import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.common.Rotation;
 
 public class LaserPiece extends CommonPlay {
 

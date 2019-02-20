@@ -1,6 +1,10 @@
-package lasermaze.model.piece;
+package lasermaze.model.piece.common;
 
 import lasermaze.model.*;
+import lasermaze.model.piece.properties.Penetable;
+import lasermaze.model.piece.properties.Playable;
+import lasermaze.model.piece.properties.Reflectable;
+import lasermaze.model.piece.properties.Shootable;
 import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;

@@ -1,6 +1,9 @@
-package lasermaze.model.piece;
+package lasermaze.model.piece.common;
 
 import lasermaze.model.*;
+import lasermaze.model.piece.Dummy;
+import lasermaze.model.piece.Piece;
+import lasermaze.model.piece.Pieceable;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
 

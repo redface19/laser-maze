@@ -2,6 +2,9 @@ package lasermaze.model;
 
 import lasermaze.model.piece.Laser;
 import lasermaze.model.piece.Piece;
+import lasermaze.model.piece.common.Direction;
+import lasermaze.model.piece.common.Point;
+import lasermaze.model.piece.common.Rotation;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
 

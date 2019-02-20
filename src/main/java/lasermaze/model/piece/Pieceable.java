@@ -1,8 +1,8 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Direction;
+import lasermaze.model.piece.common.Direction;
 import lasermaze.model.LaserPointer;
-import lasermaze.model.Rotation;
+import lasermaze.model.piece.common.Rotation;
 
 public interface Pieceable {
     void hit(LaserPointer laserPointer);

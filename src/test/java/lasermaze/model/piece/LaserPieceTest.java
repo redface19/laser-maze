@@ -1,11 +1,11 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Direction;
 import lasermaze.model.NotSupportedException;
-import lasermaze.model.Point;
+import lasermaze.model.piece.common.Direction;
+import lasermaze.model.piece.common.Point;
+import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.properties.LaserPiece;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class LaserPieceTest {
 

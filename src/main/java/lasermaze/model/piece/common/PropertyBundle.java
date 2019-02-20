@@ -1,4 +1,6 @@
-package lasermaze.model.piece;
+package lasermaze.model.piece.common;
+
+import lasermaze.model.piece.properties.*;
 
 public enum PropertyBundle {
 

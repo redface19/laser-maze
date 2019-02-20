@@ -1,6 +1,6 @@
 package lasermaze;
 
-import lasermaze.model.piece.Game;
+import lasermaze.model.Game;
 import lasermaze.model.user.User;
 
 public class Main {

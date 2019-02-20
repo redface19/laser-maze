@@ -2,6 +2,8 @@ package lasermaze.model.piece;
 
 import lasermaze.model.Board;
 import lasermaze.model.LaserPointer;
+import lasermaze.model.piece.common.PieceProperties;
+import lasermaze.model.piece.common.Position;
 import lasermaze.model.user.User;
 
 public class Laser extends Piece {

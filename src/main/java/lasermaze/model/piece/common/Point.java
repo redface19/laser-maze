@@ -1,6 +1,5 @@
-package lasermaze.model;
+package lasermaze.model.piece.common;
 
-import lasermaze.model.piece.Piece;
 import org.slf4j.Logger;
 
 import java.util.HashMap;

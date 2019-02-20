@@ -1,17 +1,17 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.Board;
-import lasermaze.model.Direction;
 import lasermaze.model.LaserPointer;
-import lasermaze.model.Point;
+import lasermaze.model.piece.common.Direction;
+import lasermaze.model.piece.common.Point;
+import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.common.PropertyBundle;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static lasermaze.model.user.UserTest.BRAD;
 import static lasermaze.model.user.UserTest.DOBY;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 public class SplitterTest {
 

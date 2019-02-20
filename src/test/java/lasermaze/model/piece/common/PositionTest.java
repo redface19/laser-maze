@@ -1,12 +1,8 @@
-package lasermaze.model.piece;
+package lasermaze.model.piece.common;
 
-import lasermaze.model.Direction;
-import lasermaze.model.Point;
 import org.junit.Test;
 import org.slf4j.Logger;
 
-import static org.junit.Assert.*;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class PositionTest {

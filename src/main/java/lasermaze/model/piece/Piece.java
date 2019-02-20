@@ -1,8 +1,10 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Direction;
-import lasermaze.model.Point;
-import lasermaze.model.Rotation;
+import lasermaze.model.piece.common.Direction;
+import lasermaze.model.piece.common.Point;
+import lasermaze.model.piece.common.Rotation;
+import lasermaze.model.piece.common.PieceProperties;
+import lasermaze.model.piece.common.Position;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
 

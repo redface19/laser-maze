@@ -1,6 +1,7 @@
-package lasermaze.model.piece;
+package lasermaze.model.piece.properties;
 
 import lasermaze.model.LaserPointer;
+import lasermaze.model.piece.common.Position;
 import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;

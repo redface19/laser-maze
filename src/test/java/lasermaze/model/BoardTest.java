@@ -1,14 +1,15 @@
 package lasermaze.model;
 
 import lasermaze.model.piece.King;
-import lasermaze.model.piece.Position;
-import lasermaze.model.piece.PropertyBundle;
+import lasermaze.model.piece.common.Direction;
+import lasermaze.model.piece.common.Point;
+import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.common.PropertyBundle;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 

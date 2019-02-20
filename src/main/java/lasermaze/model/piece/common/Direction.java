@@ -1,5 +1,6 @@
-package lasermaze.model;
+package lasermaze.model.piece.common;
 
+import lasermaze.model.Board;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

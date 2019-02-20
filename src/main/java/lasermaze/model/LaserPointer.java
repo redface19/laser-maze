@@ -1,6 +1,7 @@
 package lasermaze.model;
 
-import lasermaze.model.piece.Position;
+import lasermaze.model.piece.common.Point;
+import lasermaze.model.piece.common.Position;
 
 import java.util.Objects;
 

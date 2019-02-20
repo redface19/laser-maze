@@ -1,4 +1,4 @@
-package lasermaze.model;
+package lasermaze.model.piece.common;
 
 public enum Rotation {
     CLOCKWISE(9), COUNTERCLOCKWISE(10);
