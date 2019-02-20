@@ -1,6 +1,8 @@
 package lasermaze.model.piece;
 
+import lasermaze.model.Direction;
 import lasermaze.model.LaserPointer;
+import lasermaze.model.Point;
 import lasermaze.model.Rotation;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
@@ -16,7 +18,7 @@ public class Splitter extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-        pieceProperties.penetrate(laserPointer, position);
+//        pieceProperties.penetrate(laserPointer, position);
 
         if (laserPointer.canRemove(position)) {
             position.rotate(position.getRotatedDirection(Rotation.COUNTERCLOCKWISE).getRotatedDirection(Rotation.COUNTERCLOCKWISE));

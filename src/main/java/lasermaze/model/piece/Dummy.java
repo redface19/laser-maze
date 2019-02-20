@@ -11,6 +11,5 @@ public class Dummy extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-        laserPointer.move();
     }
 }

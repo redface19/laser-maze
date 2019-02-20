@@ -11,7 +11,5 @@ public class DiagonalReflect implements Reflectable {
     @Override
     public void reflect(LaserPointer laserPointer, Position piecePosition) {
         laserPointer.reflect(piecePosition);
-        log.debug("Diagnal Reflect : laserPointer : {}", laserPointer);
-        laserPointer.move();
     }
 }

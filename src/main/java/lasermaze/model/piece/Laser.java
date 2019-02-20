@@ -16,6 +16,10 @@ public class Laser extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
+    }
 
+
+    public Position generateNewPosition() {
+        return position.generateNewPosition();
     }
 }

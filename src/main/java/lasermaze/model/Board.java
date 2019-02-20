@@ -5,6 +5,8 @@ import lasermaze.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.*;
+
 public class Board {
     private static final Logger log = LoggerFactory.getLogger(Board.class);
 
@@ -15,12 +17,13 @@ public class Board {
     public Board(User user1, User user2) {
         dummyInit();
         pieceInit(user1, user2);
+        chessSquares[5][4] = new Splitter(user1, new Position(Direction.SOUTHWEST, new Point(5, 4)), PropertyBundle.SPLITTER_PROPRTY.getProperty());
     }
 
     private void pieceInit(User user1, User user2) {
         putSymmetryPieces(4, 0, user2, new King(user1, new Position(Direction.EAST, new Point(4, 0)), PropertyBundle.KING_PROPRTY.getProperty()));
         putSymmetryPieces(7, 0, user2, new Laser(user1, new Position(Direction.EAST, new Point(7, 0)), PropertyBundle.LASER_PROPERTY.getProperty()));
-        putSymmetryPieces(7, 7, user2, new Splitter(user1, new Position(Direction.EAST, new Point(4, 0)), PropertyBundle.SPLITTER_PROPRTY.getProperty()));
+        putSymmetryPieces(7, 7, user2, new Splitter(user1, new Position(Direction.NORTHEAST, new Point(7, 7)), PropertyBundle.SPLITTER_PROPRTY.getProperty()));
         putSymmetryPieces(7, 4, user2, new Knight(user1, new Position(Direction.NORTHWEST, new Point(7, 4)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
         putSymmetryPieces(1, 7, user2, new Knight(user1, new Position(Direction.NORTHWEST, new Point(1, 7)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
         putSymmetryPieces(2, 0, user2, new Knight(user1, new Position(Direction.NORTHEAST, new Point(2, 0)), PropertyBundle.TRIANGLE_KNIGHT_PROPERTY.getProperty()));
@@ -80,9 +83,34 @@ public class Board {
     public Laser getLaser(User user) {
         for (Piece[] chessSquare : chessSquares) {
             for (Piece piece : chessSquare) {
-                if (piece.isSameUser(user) && piece instanceof Laser) return (Laser)piece;
+                if (piece.isSameUser(user) && piece instanceof Laser) return (Laser) piece;
             }
         }
         throw new NotSupportedException("cannot find laser piece");
+    }
+
+    public void shoot(User user) {
+        Laser laser = getLaser(user);
+        Position laserPosition = laser.generateNewPosition();
+
+        Queue<LaserPointer> lasers = new LinkedList<>();
+        LaserPointer laserPointer = new LaserPointer(laserPosition.generateNewPosition());
+        lasers.add(laserPointer);
+
+        while (!lasers.isEmpty()) {
+            int size = lasers.size();
+            for (int i = 0; i < size; i++) {
+                LaserPointer pointer = lasers.poll();
+                pointer.move();
+                Piece nextPiece = getChessSquare(pointer.getPoint());
+                if (nextPiece instanceof Splitter && !pointer.isOutOfBound()) {
+                    lasers.offer(pointer.generateNewLaserPointer());
+                }
+                nextPiece.hit(pointer);
+                if (!(pointer.isEnd() || pointer.isOutOfBound())) {
+                    lasers.offer(pointer);
+                }
+            }
+        }
     }
 }

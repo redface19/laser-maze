@@ -1,13 +1,17 @@
 package lasermaze.model;
 
 import lasermaze.model.piece.Piece;
+import org.slf4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static lasermaze.model.Board.CHESSBOARD_SIZE;
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class Point {
+    private static final Logger log = getLogger(Point.class);
+
     private static final Map<Direction, Point> MOVE_TABLE = new HashMap<>();
 
     static {

@@ -12,5 +12,6 @@ public class King extends Piece {
     @Override
     public void hit(LaserPointer laserPointer) {
         laserPointer.removePiece();
+        laserPointer.setEnd(true);
     }
 }

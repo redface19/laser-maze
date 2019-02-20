@@ -39,6 +39,8 @@ public class Command {
             piece.rotate(Rotation.getRotation(commandNumber));
         }
 
+        board.shoot(user);
+
         Laser laser = board.getLaser(user);
         laser.shoot(board);
     }

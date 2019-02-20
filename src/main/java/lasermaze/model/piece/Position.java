@@ -75,6 +75,10 @@ public class Position {
         this.direction = rotatedDirection;
     }
 
+    public Point getPoint() {
+        return this.point;
+    }
+
     @Override
     public String toString() {
         return "Position{" +

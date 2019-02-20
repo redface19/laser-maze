@@ -7,17 +7,19 @@ import java.util.Objects;
 public class LaserPointer {
     private Board board;
     private Position position;
+    private boolean end = false;
 
     public LaserPointer(Board board, Position position) {
         this.board = board;
         this.position = position;
     }
 
+    public LaserPointer(Position position) {
+        this.position = position;
+    }
+
     public void move() {
-        if(!position.isOutOfBound()) {
-            position.move();
-            position.getNextPiece(board).hit(this);
-        }
+        position.move();
     }
 
     public void removePiece() {
@@ -36,11 +38,31 @@ public class LaserPointer {
         return new LaserPointer(board, piecePosition.generateNewPosition(position));
     }
 
+    public LaserPointer generateNewLaserPointer() {
+        return new LaserPointer(position.generateNewPosition());
+    }
+
+    public boolean isEnd() {
+        return this.end;
+    }
+
+    public void setEnd(boolean end) {
+        this.end = end;
+    }
+
+    public Point getPoint() {
+        return position.getPoint();
+    }
+
     @Override
     public String toString() {
         return "LaserPointer{" +
                 "position=" + position +
                 '}';
+    }
+
+    public boolean isOutOfBound() {
+        return position.isOutOfBound();
     }
 
     @Override

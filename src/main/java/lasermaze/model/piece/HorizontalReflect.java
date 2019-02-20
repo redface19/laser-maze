@@ -7,6 +7,5 @@ public class HorizontalReflect implements Reflectable {
     @Override
     public void reflect(LaserPointer laserPointer, Position piecePosition) {
         laserPointer.reflect(piecePosition);
-        laserPointer.move();
     }
 }
