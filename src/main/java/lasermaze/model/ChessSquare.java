@@ -3,7 +3,6 @@ package lasermaze.model;
 import lasermaze.model.piece.*;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.common.Position;
 import lasermaze.model.piece.properties.*;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChessSquare {
-
     private static final Logger log = LoggerFactory.getLogger(ChessSquare.class);
 
     public static final int CHESSBOARD_SIZE = 8;
@@ -28,17 +26,17 @@ public class ChessSquare {
         this.user2 = user2;
     }
 
-    private void pieceInit(User user1, User user2) {
+    public void pieceInit() {
         putSymmetryPieces(user2, new King(user1, Direction.EAST, new Point(4, 0), new NonLaserPiece()));
         putSymmetryPieces(user2, new Laser(user1, Direction.EAST, new Point(7, 0), new LaserPiece()));
         putSymmetryPieces(user2, new Splitter(user1, Direction.NORTHEAST, new Point(7, 7), new NonLaserPiece(), new DiagonalReflect()));
         putSymmetryPieces(user2, new Knight(user1, Direction.NORTHWEST, new Point(7, 4), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHWEST, new Point(1, 7)), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHEAST, new Point(2, 0)), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHEAST, new Point(3, 3)), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.SOUTHEAST, new Point(4, 3)), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.EAST, new Point(3, 0)), new NonLaserPiece(), new HorizontalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.EAST, new Point(5, 0)), new NonLaserPiece(), new HorizontalReflect()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHWEST, new Point(1, 7), new NonLaserPiece(), new DiagonalReflect()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHEAST, new Point(2, 0), new NonLaserPiece(), new DiagonalReflect()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHEAST, new Point(3, 3), new NonLaserPiece(), new DiagonalReflect()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.SOUTHEAST, new Point(4, 3), new NonLaserPiece(), new DiagonalReflect()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.EAST, new Point(3, 0), new NonLaserPiece(), new HorizontalReflect()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.EAST, new Point(5, 0), new NonLaserPiece(), new HorizontalReflect()));
     }
 
     private void dummyInit() {
@@ -51,28 +49,28 @@ public class ChessSquare {
         }
     }
 
-    private Dummy getDummy(Point point) {
-        return new Dummy(User.DUMMY_USER, new Position(Direction.NONE, point), new CommonPlay());
+    public Dummy getDummy(Point point) {
+        return new Dummy(User.DUMMY_USER, Direction.NONE, point, new CommonPlay());
     }
 
     public void putPiece(Point point, Piece piece) {
         board.get(point.getRow()).set(point.getCol(), piece);
     }
 
-    public Piece getChessSquare(Point point) {
+    public Piece getPiece(Point point) {
         return board.get(point.getRow()).get(point.getCol());
     }
 
     public void swap(Point prevPoint, Direction direction) {
         Point nextPoint = prevPoint.getNextPoint(direction);
-        chessSquares[nextPoint.getRow()][nextPoint.getCol()] = getChessSquare(prevPoint);
-        putDummy(prevPoint.getRow(), prevPoint.getCol());
+        putPiece(nextPoint, getPiece(prevPoint));
+        putPiece(prevPoint, getDummy(prevPoint));
     }
-
+/*
     public void deleteChess(Position position) {
         Point point = position.getPoint();
         putPiece(point, getDummy(point));
-    }
+    }*/
 
     public void putSymmetryPieces(User other, Piece piece) {
         try {
@@ -85,7 +83,7 @@ public class ChessSquare {
     }
 
     public boolean isDummy(Point nextPoint) {
-        return getChessSquare(nextPoint) instanceof Dummy;
+        return getPiece(nextPoint) instanceof Dummy;
     }
 
     public Laser getLaser(User user) {

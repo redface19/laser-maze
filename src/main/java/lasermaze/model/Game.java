@@ -5,6 +5,8 @@ import lasermaze.model.piece.King;
 import lasermaze.model.piece.Piece;
 import lasermaze.model.user.User;
 
+import static lasermaze.model.ChessSquare.CHESSBOARD_SIZE;
+
 public class Game {
 
     private Board board;
@@ -14,7 +16,7 @@ public class Game {
     public Game(User user1, User user2) {
         this.user1 = user1;
         this.user2 = user2;
-        board = new Board(user1, user2);
+        board = new Board(new ChessSquare(user1, user2));
     }
 
     public void start() {
@@ -39,9 +41,9 @@ public class Game {
     public User getWinner() {
         boolean kingOfUser1Exist = true;
         boolean kingOfUser2Exist = true;
-        for (int row = 0; row < Board.CHESSBOARD_SIZE; row++) {
-            for (int col = 0; col < Board.CHESSBOARD_SIZE; col++) {
-                Piece piece = board.getChessSquare(row, col);
+        for (int row = 0; row < CHESSBOARD_SIZE; row++) {
+            for (int col = 0; col < CHESSBOARD_SIZE; col++) {
+                Piece piece = board.getPiece(new Point(row, col));
                 kingOfUser1Exist = winnerCheck(piece, user1);
                 kingOfUser2Exist = winnerCheck(piece, user2);
             }

@@ -19,4 +19,17 @@ public class PointTest {
         piecePoint.modify(Direction.EAST);
         assertThat(piecePoint).isEqualTo(new Point(4, 1));
     }
+
+    @Test
+    public void getOpposite() {
+        Point point = new Point(3, 4);
+        assertThat(point.getSymmetrical()).isEqualTo(new Point(4, 3));
+    }
+
+    @Test
+    public void getOpposite2() {
+        Point point = new Point(1, 6);
+        assertThat(point.getSymmetrical()).isEqualTo(new Point(6, 1));
+    }
+
 }

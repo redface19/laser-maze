@@ -1,6 +1,5 @@
 package lasermaze.model;
 
-import lasermaze.model.piece.Laser;
 import lasermaze.model.piece.Piece;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
@@ -23,7 +22,7 @@ public class Command {
     }
 
     public void execute(Board board, User user) {
-        Piece piece = board.getChessSquare(point);
+        Piece piece = board.getPiece(point);
         if(!piece.isSameUser(user)) {
             throw new NotSupportedException("this user cannot control this piece");
         }

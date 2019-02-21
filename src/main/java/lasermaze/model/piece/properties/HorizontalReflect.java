@@ -1,12 +1,12 @@
 package lasermaze.model.piece.properties;
 
 import lasermaze.model.LaserPointer;
-import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.common.Direction;
 
 public class HorizontalReflect implements Reflectable {
 
     @Override
-    public void reflect(LaserPointer laserPointer, Position piecePosition) {
-        laserPointer.reflect(piecePosition);
+    public void reflect(LaserPointer laserPointer, Direction direction) {
+        laserPointer.reflect(direction);
     }
 }

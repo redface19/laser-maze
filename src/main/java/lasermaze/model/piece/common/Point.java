@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
-import static lasermaze.model.Board.CHESSBOARD_SIZE;
 import static lasermaze.model.ChessSquare.CHESSBOARD_SIZE;
 import static org.slf4j.LoggerFactory.getLogger;
 

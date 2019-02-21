@@ -3,7 +3,6 @@ package lasermaze.model;
 import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.common.Position;
 import org.junit.Test;
 import org.slf4j.Logger;
 
@@ -17,18 +16,20 @@ public class LaserPointerTest {
 
     @Test
     public void move() {
-        Board board = new Board(DOBY, BRAD);
-        LaserPointer laserPointer = new LaserPointer(board, new Position(Direction.EAST, new Point(7, 0)));
+        ChessSquare chessSquare = new ChessSquare(DOBY, BRAD);
+        Board board = new Board(chessSquare);
+        LaserPointer laserPointer = new LaserPointer(Direction.EAST, new Point(7, 0));
         laserPointer.move();
         log.debug("laserPoint : {}", laserPointer);
-        log.debug("laser : {}", board.getChessSquare(new Point(7, 0)));
+        log.debug("laser : {}", board.getPiece(new Point(7, 0)));
     }
 
     @Test
     public void removePiece() {
-        Board board = new Board(DOBY, BRAD);
-        LaserPointer laserPointer = new LaserPointer(board, new Position(Direction.EAST, new Point(3, 3)));
-        laserPointer.removePiece();
-        assertThat(board.getChessSquare(3, 3) instanceof Dummy).isTrue();
+        ChessSquare chessSquare = new ChessSquare(DOBY, BRAD);
+        Board board = new Board(chessSquare);
+        LaserPointer laserPointer = new LaserPointer(Direction.EAST, new Point(3, 3));
+        board.deletePiece(laserPointer);
+        assertThat(board.getPiece(new Point(3, 3)) instanceof Dummy).isTrue();
     }
 }

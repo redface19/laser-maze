@@ -3,9 +3,6 @@ package lasermaze.model;
 import lasermaze.model.piece.*;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.common.Position;
-import lasermaze.model.piece.common.PropertyBundle;
-import lasermaze.model.piece.properties.*;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +16,12 @@ public class Board {
 
     public Board(ChessSquare chessSquare) {
         this.chessSquare = chessSquare;
+        chessSquare.pieceInit();
     }
 
     public void shoot(User user) {
-        Position laserPosition = getLaser(user).generateNewPosition();
-
         Queue<LaserPointer> lasers = new LinkedList<>();
-        LaserPointer laserPointer = new LaserPointer(laserPosition.generateNewPosition());
+        LaserPointer laserPointer = chessSquare.getLaser(user).generateLaserPointer();
         lasers.add(laserPointer);
 
         while (!lasers.isEmpty()) {
@@ -33,15 +29,43 @@ public class Board {
             for (int i = 0; i < size; i++) {
                 LaserPointer pointer = lasers.poll();
                 pointer.move();
-                Piece nextPiece = getChessSquare(pointer.getPoint());
+                if(pointer.isOutOfBound()) {
+                    continue;
+                }
+                Piece nextPiece = getPiece(pointer.getPoint());
                 if (nextPiece instanceof Splitter && !pointer.isOutOfBound()) {
                     lasers.offer(pointer.generateNewLaserPointer());
                 }
+
                 nextPiece.hit(pointer);
+
+                if(pointer.isEnd()) {
+                    deletePiece(pointer);
+                }
+
                 if (!(pointer.isEnd() || pointer.isOutOfBound())) {
                     lasers.offer(pointer);
                 }
+
+                log.debug("pointer : {}", pointer);
             }
         }
     }
+
+    public void deletePiece(LaserPointer pointer) {
+        chessSquare.putPiece(pointer.getPoint(), chessSquare.getDummy(pointer.getPoint()));
+    }
+
+    public Piece getPiece(Point point) {
+        return chessSquare.getPiece(point);
+    }
+
+    public void swap(Point prevPoint, Direction direction) {
+        chessSquare.swap(prevPoint, direction);
+    }
+
+    public boolean isDummy(Point nextPoint) {
+        return chessSquare.isDummy(nextPoint);
+    }
+
 }

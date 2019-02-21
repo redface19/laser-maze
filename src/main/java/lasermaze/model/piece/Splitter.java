@@ -20,11 +20,11 @@ public class Splitter extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
-        if (laserPointer.canRemove(position)) {
-            position.rotate(position.getRotatedDirection(Rotation.COUNTERCLOCKWISE).getRotatedDirection(Rotation.COUNTERCLOCKWISE));
+        if (laserPointer.canRemove(direction)) {
+            direction = direction.getDiametricalDirection();
         }
         log.debug("laser Pointer : {}", laserPointer);
-        log.debug("position : {}", position);
-        reflectable.reflect(laserPointer, position);
+        log.debug("point : {}, direction : {}", point, direction);
+        reflectable.reflect(laserPointer, direction);
     }
 }

@@ -2,46 +2,40 @@ package lasermaze.model;
 
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.common.Rotation;
 
 import java.util.Objects;
 
 public class LaserPointer {
-    private Board board;
-    private Position position;
+    private Direction direction;
+    private Point point;
     private boolean end = false;
 
-    public LaserPointer(Board board, Position position) {
-        this.board = board;
-        this.position = position;
-    }
-
-    public LaserPointer(Position position) {
-        this.position = position;
+    public LaserPointer(Direction direction, Point point) {
+        this.direction = direction;
+        this.point = point;
     }
 
     public void move() {
-        position.move();
+        point.move(direction);
     }
 
-    public void removePiece() {
-        board.deleteChess(position);
+    public boolean canRemove(Direction pieceDirection) {
+        return !direction.isReflectable(pieceDirection);
     }
 
-    public boolean canRemove(Position piecePosition) {
-        return !position.isReflectable(piecePosition);
-    }
-
-    public void reflect(Position piecePosition, Direction direction) {
-        position.reflect(piecePosition);
-    }
-
-    public LaserPointer generateNewLaserPointer(Position piecePosition) {
-        return new LaserPointer(board, piecePosition.generateNewPosition(position));
+    public void reflect(Direction pieceDirection) {
+        if(pieceDirection.isSquareKnight()) {
+            direction = pieceDirection;
+            return;
+        }
+        Rotation reflectedRotation = direction.getTriangleRotation(pieceDirection);
+        Direction rotatedDirection = direction.getRotatedDirection(reflectedRotation);
+        this.direction = rotatedDirection;
     }
 
     public LaserPointer generateNewLaserPointer() {
-        return new LaserPointer(position.generateNewPosition());
+        return new LaserPointer(direction, point);
     }
 
     public boolean isEnd() {
@@ -53,18 +47,21 @@ public class LaserPointer {
     }
 
     public Point getPoint() {
-        return position.getPoint();
+        return point;
+    }
+
+
+    public boolean isOutOfBound() {
+        return point.isOutOfBound();
     }
 
     @Override
     public String toString() {
         return "LaserPointer{" +
-                "position=" + position +
+                "direction=" + direction +
+                ", point=" + point +
+                ", end=" + end +
                 '}';
-    }
-
-    public boolean isOutOfBound() {
-        return position.isOutOfBound();
     }
 
     @Override
@@ -72,11 +69,13 @@ public class LaserPointer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LaserPointer that = (LaserPointer) o;
-        return Objects.equals(position, that.position);
+        return end == that.end &&
+                direction == that.direction &&
+                Objects.equals(point, that.point);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position);
+        return Objects.hash(direction, point, end);
     }
 }

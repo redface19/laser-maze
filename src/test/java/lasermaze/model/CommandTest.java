@@ -2,7 +2,6 @@ package lasermaze.model;
 
 import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.King;
-import lasermaze.model.piece.Piece;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
 import org.junit.Before;
@@ -17,11 +16,12 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class CommandTest {
     private static final Logger log = getLogger(CommandTest.class);
 
-    private Board board;
+    ChessSquare chessSquare = new ChessSquare(DOBY, BRAD);
+    Board board;
 
     @Before
     public void setUp() throws Exception {
-        board = new Board(DOBY, BRAD);
+        board = new Board(chessSquare);
     }
 
     @Test
@@ -34,9 +34,9 @@ public class CommandTest {
     public void 정상적으로_이동() {
         Command command = new Command(new Point(4, 0), 3);
         command.execute(board, DOBY);
-        assertThat(board.getChessSquare(4, 1) instanceof King).isTrue();
-        assertThat(board.getChessSquare(4, 0) instanceof Dummy).isTrue();
-        log.debug("laser : {}", board.getChessSquare(new Point(7, 0)));
+        assertThat(board.getPiece(new Point(4, 1)) instanceof King).isTrue();
+        assertThat(board.getPiece(new Point(4, 0)) instanceof Dummy).isTrue();
+        log.debug("laser : {}", board.getPiece(new Point(7, 0)));
     }
 
 
@@ -80,21 +80,6 @@ public class CommandTest {
 
     @Test(expected = NotSupportedException.class)
     public void isSameUser() {
-        Board board = new Board(DOBY, BRAD);
         new Command(new Point(4, 7), 2).execute(board, DOBY);
-    }
-
-    @Test
-    public void getLaser() {
-        Board board = new Board(DOBY, BRAD);
-        Piece piece = board.getLaser(DOBY);
-        assertThat(board.getChessSquare(new Point(7, 0))).isEqualTo(piece);
-    }
-
-    @Test
-    public void getLaser2() {
-        Board board = new Board(DOBY, BRAD);
-        Piece piece = board.getLaser(BRAD);
-        assertThat(board.getChessSquare(new Point(0, 7))).isEqualTo(piece);
     }
 }

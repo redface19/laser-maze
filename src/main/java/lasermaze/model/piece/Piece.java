@@ -2,7 +2,6 @@ package lasermaze.model.piece;
 
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.common.Position;
 import lasermaze.model.piece.common.Rotation;
 import lasermaze.model.piece.properties.Playable;
 import lasermaze.model.user.User;
@@ -64,19 +63,23 @@ public abstract class Piece implements Pieceable, Cloneable {
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
         return Objects.equals(user, piece.user) &&
-                Objects.equals(position, piece.position);
+                direction == piece.direction &&
+                Objects.equals(point, piece.point) &&
+                Objects.equals(playable, piece.playable);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, position);
+        return Objects.hash(user, direction, point, playable);
     }
 
     @Override
     public String toString() {
         return "Piece{" +
                 "user=" + user +
-                ", position=" + position +
+                ", direction=" + direction +
+                ", point=" + point +
+                ", playable=" + playable +
                 '}';
     }
 }

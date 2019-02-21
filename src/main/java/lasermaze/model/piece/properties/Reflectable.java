@@ -1,8 +1,8 @@
 package lasermaze.model.piece.properties;
 
 import lasermaze.model.LaserPointer;
-import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.common.Direction;
 
 public interface Reflectable {
-    void reflect(LaserPointer laserPointer, Position position);
+    void reflect(LaserPointer laserPointer, Direction direction);
 }

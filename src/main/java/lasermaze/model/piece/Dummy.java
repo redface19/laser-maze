@@ -3,8 +3,6 @@ package lasermaze.model.piece;
 import lasermaze.model.LaserPointer;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.common.Position;
-import lasermaze.model.piece.properties.CommonPlay;
 import lasermaze.model.piece.properties.Playable;
 import lasermaze.model.user.User;
 

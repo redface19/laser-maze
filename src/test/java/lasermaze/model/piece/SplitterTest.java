@@ -1,11 +1,10 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.Board;
+import lasermaze.model.ChessSquare;
 import lasermaze.model.LaserPointer;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.common.Position;
-import lasermaze.model.piece.common.PropertyBundle;
 import lasermaze.model.piece.properties.DiagonalReflect;
 import lasermaze.model.piece.properties.NonLaserPiece;
 import org.junit.Test;
@@ -21,10 +20,10 @@ public class SplitterTest {
 
     @Test
     public void hitTest1() {
-        Splitter splitter = new Splitter(DOBY, new Position(Direction.NORTHEAST, new Point(3,3 ))
-                , new NonLaserPiece(), new DiagonalReflect());
-        Board board = new Board(DOBY, BRAD);
-        LaserPointer laserPointer = new LaserPointer(board, new Position(Direction.NORTH, new Point(3,3 )));
+        Splitter splitter = new Splitter(DOBY, Direction.NORTHEAST, new Point(3,3 ), new NonLaserPiece(), new DiagonalReflect());
+        ChessSquare chessSquare = new ChessSquare(DOBY, BRAD);
+        Board board = new Board(chessSquare);
+        LaserPointer laserPointer = new LaserPointer(Direction.NORTH, new Point(3,3 ));
         splitter.hit(laserPointer);
 
         log.debug("Laser Pointer Direction : {}", laserPointer); // west
@@ -32,16 +31,15 @@ public class SplitterTest {
     }
 
     @Test
-    public void hitTest2() {Splitter splitter = new Splitter(DOBY, new Position(Direction.SOUTHWEST, new Point(1,1 ))
-            , new NonLaserPiece(), new DiagonalReflect());
-        Board board = new Board(DOBY, BRAD);
-        LaserPointer laserPointer = new LaserPointer(board, new Position(Direction.SOUTH, new Point(1,1 )));
+    public void hitTest2() {Splitter splitter = new Splitter(DOBY, Direction.SOUTHWEST, new Point(1,1 ), new NonLaserPiece(), new DiagonalReflect());
+        ChessSquare chessSquare = new ChessSquare(DOBY, BRAD);
+        Board board = new Board(chessSquare);
+        LaserPointer laserPointer = new LaserPointer(Direction.SOUTH, new Point(1,1 ));
         splitter.hit(laserPointer);
 
-        Splitter targetPiece = new Splitter(DOBY, new Position(Direction.SOUTHWEST, new Point(1,1 ))
-                , new NonLaserPiece(), new DiagonalReflect());
+        Splitter targetPiece = new Splitter(DOBY, Direction.SOUTHWEST, new Point(1,1 ), new NonLaserPiece(), new DiagonalReflect());
 
-        LaserPointer targetPointer = new LaserPointer(board, new Position(Direction.EAST, new Point(1,1 )));
+        LaserPointer targetPointer = new LaserPointer(Direction.EAST, new Point(1,1 ));
 
         log.debug("Laser Pointer Direction : {}", laserPointer);
         log.debug("Piece Pointer Direction : {}", splitter);
