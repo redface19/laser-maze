@@ -4,6 +4,7 @@ import lasermaze.model.*;
 import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.Piece;
 import lasermaze.model.piece.Pieceable;
+import lasermaze.model.piece.properties.NonLaserPiece;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
 
@@ -61,7 +62,7 @@ public class Position {
     }
 
     public void delete(Piece[][] chessSquares) {
-        chessSquares[point.getRow()][point.getCol()] = new Dummy(User.DUMMY_USER, this, PropertyBundle.DUMMY_PROPERTY.getProperty());
+        chessSquares[point.getRow()][point.getCol()] = new Dummy(User.DUMMY_USER, this, new NonLaserPiece());
     }
 
     public boolean isReflectable(Position piecePosition) {

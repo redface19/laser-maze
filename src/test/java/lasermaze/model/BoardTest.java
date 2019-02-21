@@ -5,6 +5,7 @@ import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
 import lasermaze.model.piece.common.Position;
 import lasermaze.model.piece.common.PropertyBundle;
+import lasermaze.model.piece.properties.NonLaserPiece;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -30,7 +31,7 @@ public class BoardTest {
 
     @Test
     public void putSymmetryPieces() {
-        board.putSymmetryPieces(4, 0, BRAD, new King(DOBY, new Position(Direction.EAST, new Point(4, 0)), PropertyBundle.KING_PROPRTY.getProperty()));
+        board.putSymmetryPieces(4, 0, BRAD, new King(DOBY, new Position(Direction.EAST, new Point(4, 0)), new NonLaserPiece()));
     }
 
     @Test

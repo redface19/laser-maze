@@ -43,9 +43,6 @@ public class Command {
         }
 
         board.shoot(user);
-
-        Laser laser = board.getLaser(user);
-        laser.shoot(board);
     }
 
     public static boolean hasBarrier(Point point, Direction direction) {

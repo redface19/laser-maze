@@ -4,16 +4,14 @@ import lasermaze.model.Board;
 import lasermaze.model.LaserPointer;
 import lasermaze.model.piece.common.PieceProperties;
 import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.properties.LaserPiece;
+import lasermaze.model.piece.properties.Playable;
 import lasermaze.model.user.User;
 
 public class Laser extends Piece {
 
-    public Laser(User user, Position position, PieceProperties pieceProperties) {
-        super(user, position, pieceProperties);
-    }
-
-    public void shoot(Board board) {
-        pieceProperties.shoot(board, position);
+    public Laser(User user, Position position, Playable playable) {
+        super(user, position, playable);
     }
 
     @Override

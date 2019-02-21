@@ -2,9 +2,9 @@ package lasermaze.model.piece;
 
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.common.Rotation;
-import lasermaze.model.piece.common.PieceProperties;
 import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.common.Rotation;
+import lasermaze.model.piece.properties.Playable;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
 
@@ -17,22 +17,12 @@ public abstract class Piece implements Pieceable, Cloneable {
 
     private User user;
     protected Position position;
-    protected PieceProperties pieceProperties;
+    private Playable playable;
 
-    public Piece(User user, Position position, PieceProperties pieceProperties) {
+    public Piece(User user, Position position, Playable playable) {
         this.user = user;
         this.position = position;
-        this.pieceProperties = pieceProperties;
-    }
-
-    @Override
-    public void move(Direction direction) {
-        pieceProperties.move(position, direction);
-    }
-
-    @Override
-    public void rotate(Rotation rotation) {
-        pieceProperties.rotate(position, rotation);
+        this.playable = playable;
     }
 
     public Piece makeEnemy(Point point, User user) throws CloneNotSupportedException {
@@ -47,6 +37,16 @@ public abstract class Piece implements Pieceable, Cloneable {
     }
 
     @Override
+    public void move(Direction direction) {
+        playable.move(position, direction);
+    }
+
+    @Override
+    public void rotate(Rotation rotation) {
+        playable.rotate(position, rotation);
+    }
+
+    @Override
     public Piece clone() throws CloneNotSupportedException {
         return (Piece) super.clone();
     }
@@ -56,14 +56,13 @@ public abstract class Piece implements Pieceable, Cloneable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
-        return user.equals(piece.user) &&
-                position.equals(piece.position) &&
-                pieceProperties.equals(piece.pieceProperties);
+        return Objects.equals(user, piece.user) &&
+                Objects.equals(position, piece.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, position, pieceProperties);
+        return Objects.hash(user, position);
     }
 
     @Override
@@ -71,7 +70,6 @@ public abstract class Piece implements Pieceable, Cloneable {
         return "Piece{" +
                 "user=" + user +
                 ", position=" + position +
-                ", pieceProperties=" + pieceProperties +
                 '}';
     }
 }
