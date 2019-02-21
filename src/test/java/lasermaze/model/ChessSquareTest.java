@@ -1,5 +1,6 @@
 package lasermaze.model;
 
+import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.King;
 import lasermaze.model.piece.Laser;
 import lasermaze.model.piece.Piece;
@@ -57,6 +58,14 @@ public class ChessSquareTest {
         chessSquare.pieceInit();
         log.debug("piece : {}", chessSquare.getPiece(new Point(4, 0)));
         assertThat(chessSquare.getPiece(new Point(4, 0)) instanceof King).isTrue();
+    }
 
+    @Test
+    public void swap() {
+        ChessSquare chessSquare = new ChessSquare(DOBY, BRAD);
+        chessSquare.pieceInit();
+        chessSquare.swap(new Point(3, 7), Direction.WEST);
+        assertThat(chessSquare.getPiece(new Point(3, 6)) instanceof King).isTrue();
+        assertThat(chessSquare.getPiece(new Point(3, 7)) instanceof Dummy).isTrue();
     }
 }

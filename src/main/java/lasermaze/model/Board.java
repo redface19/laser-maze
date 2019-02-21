@@ -29,9 +29,11 @@ public class Board {
             for (int i = 0; i < size; i++) {
                 LaserPointer pointer = lasers.poll();
                 pointer.move();
+
                 if(pointer.isOutOfBound()) {
                     continue;
                 }
+
                 Piece nextPiece = getPiece(pointer.getPoint());
                 if (nextPiece instanceof Splitter && !pointer.isOutOfBound()) {
                     lasers.offer(pointer.generateNewLaserPointer());
@@ -64,8 +66,8 @@ public class Board {
         chessSquare.swap(prevPoint, direction);
     }
 
-    public boolean isDummy(Point nextPoint) {
-        return chessSquare.isDummy(nextPoint);
+    public boolean hasObstacle(Point point, Direction direction) {
+        return !chessSquare.isDummy(point.getNextPoint(direction));
     }
 
 }

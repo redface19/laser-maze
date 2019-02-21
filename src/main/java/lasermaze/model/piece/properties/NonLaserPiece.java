@@ -18,8 +18,6 @@ public class NonLaserPiece extends CommonPlay {
     @Override
     public Direction rotate(Direction direction, Rotation rotation) {
         return direction.getRotatedDirection(rotation);
-        // 시계 방향 num - 8
-        // 반시계 num + 8
     }
 
 }

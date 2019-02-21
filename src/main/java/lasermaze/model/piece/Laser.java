@@ -14,6 +14,7 @@ public class Laser extends Piece {
 
     @Override
     public void hit(LaserPointer laserPointer) {
+
     }
 
 

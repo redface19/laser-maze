@@ -29,12 +29,7 @@ public class Command {
 
         int countOfDirection = Direction.values().length;
         if (commandNumber < countOfDirection) {
-            Direction direction = Direction.getDirection(commandNumber);
-            if(hasBarrier(point, direction) || hasObstacle(board, direction)) {
-                throw new NotSupportedException("Can not move Chess Piece");
-            }
-            piece.move(direction);
-            board.swap(point, direction);
+            move(board, piece);
         }
 
         if (commandNumber >= countOfDirection) {
@@ -44,12 +39,21 @@ public class Command {
         board.shoot(user);
     }
 
+    private void move(Board board, Piece piece) {
+        Direction direction = Direction.getDirection(commandNumber);
+        if(hasBarrier(point, direction) || hasObstacle(board, direction)) {
+            throw new NotSupportedException("Can not move Chess Piece");
+        }
+        piece.move(direction);
+        board.swap(point, direction);
+    }
+
     public static boolean hasBarrier(Point point, Direction direction) {
         return point.getNextPoint(direction).isOutOfBound();
     }
 
     boolean hasObstacle(Board board, Direction direction) {
-        return !board.isDummy(point.getNextPoint(direction));
+        return board.hasObstacle(point, direction);
     }
 
 
