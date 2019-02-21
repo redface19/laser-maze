@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static lasermaze.model.Board.CHESSBOARD_SIZE;
+import static lasermaze.model.ChessSquare.CHESSBOARD_SIZE;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class Point {
@@ -52,16 +53,24 @@ public class Point {
         return new Point(row, col);
     }
 
+    public boolean isOutOfBound() {
+        return row < 0 || row >= CHESSBOARD_SIZE || col < 0 || col >= CHESSBOARD_SIZE;
+    }
+
+    public Point getSymmetrical() {
+        return new Point(getOpposite(row), getOpposite(col));
+    }
+
+    private int getOpposite(int num) {
+        return CHESSBOARD_SIZE - num - 1;
+    }
+
     public int getRow() {
         return row;
     }
 
     public int getCol() {
         return col;
-    }
-
-    public boolean isOutOfBound() {
-        return row < 0 || row >= CHESSBOARD_SIZE || col < 0 || col >= CHESSBOARD_SIZE;
     }
 
     @Override

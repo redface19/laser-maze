@@ -1,5 +1,6 @@
 package lasermaze.model;
 
+import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
 import lasermaze.model.piece.common.Position;
 
@@ -31,7 +32,7 @@ public class LaserPointer {
         return !position.isReflectable(piecePosition);
     }
 
-    public void reflect(Position piecePosition) {
+    public void reflect(Position piecePosition, Direction direction) {
         position.reflect(piecePosition);
     }
 

@@ -16,20 +16,27 @@ public abstract class Piece implements Pieceable, Cloneable {
     private static final Logger log = getLogger(Piece.class);
 
     private User user;
-    protected Position position;
+    protected Direction direction;
+    protected Point point;
     private Playable playable;
 
-    public Piece(User user, Position position, Playable playable) {
+    public Piece(User user, Direction direction, Point point, Playable playable) {
         this.user = user;
-        this.position = position;
+        this.direction = direction;
+        this.point = point;
         this.playable = playable;
     }
 
-    public Piece makeEnemy(Point point, User user) throws CloneNotSupportedException {
+    public Piece makeEnemy(User user) throws CloneNotSupportedException {
         Piece enemy = clone();
-        enemy.position = position.getOppositePosition(point);
+        enemy.point = point.getSymmetrical();
+        enemy.direction = direction.getDiametricalDirection();
         enemy.user = user;
         return enemy;
+    }
+
+    public Point getPoint() {
+        return point;
     }
 
     public boolean isSameUser(User user) {
@@ -38,12 +45,12 @@ public abstract class Piece implements Pieceable, Cloneable {
 
     @Override
     public void move(Direction direction) {
-        playable.move(position, direction);
+        playable.move(point, direction);
     }
 
     @Override
     public void rotate(Rotation rotation) {
-        playable.rotate(position, rotation);
+        playable.rotate(direction, rotation);
     }
 
     @Override

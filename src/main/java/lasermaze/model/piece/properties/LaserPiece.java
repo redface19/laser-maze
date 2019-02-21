@@ -2,22 +2,23 @@ package lasermaze.model.piece.properties;
 
 import lasermaze.model.*;
 import lasermaze.model.piece.common.Direction;
-import lasermaze.model.piece.common.Position;
+import lasermaze.model.piece.common.Point;
 import lasermaze.model.piece.common.Rotation;
 
 public class LaserPiece extends CommonPlay {
 
     @Override
-    public void move(Position position, Direction direction) {
-        throw new NotSupportedException("Laser Can not move");
-    }
+    public Direction rotate(Direction direction, Rotation rotation) {
+        int rotatedDirection = direction.getRotatedDirection(rotation).getDirectionNumber();
 
-    @Override
-    public void rotate(Position position, Rotation rotation) {
-        Direction rotatedDirection = position.getRotatedDirection(rotation);
-        if(position.isOutOfBound(rotatedDirection)) {
+        if((direction.getDirectionNumber() == 1 || direction.getDirectionNumber() == 3) && rotatedDirection == 5 || rotatedDirection == 7) {
             throw new NotSupportedException("Laser cannot be rotated");
         }
-        position.rotate(rotatedDirection);
+
+        if((direction.getDirectionNumber() == 5 || direction.getDirectionNumber() == 7) && rotatedDirection == 1 || rotatedDirection == 3) {
+            throw new NotSupportedException("Laser cannot be rotated");
+        }
+
+        return Direction.getDirection(rotatedDirection);
     }
 }

@@ -4,6 +4,8 @@ import lasermaze.model.Board;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static lasermaze.model.ChessSquare.CHESSBOARD_SIZE;
+
 public enum Direction {
     NONE(0),
     NORTH(1), NORTHEAST(2), EAST(3), SOUTHEAST(4),
@@ -28,10 +30,14 @@ public enum Direction {
         int operand = rotation.equals(Rotation.COUNTERCLOCKWISE)? -1 : 1;
         int newDirection = commandNumber + (2 * operand);
 
-        if(newDirection <= 0 || newDirection > Board.CHESSBOARD_SIZE)
-            return getDirection(newDirection - (Board.CHESSBOARD_SIZE * operand));
+        if(newDirection <= 0 || newDirection > CHESSBOARD_SIZE)
+            return getDirection(newDirection - (CHESSBOARD_SIZE * operand));
 
         return getDirection(newDirection);
+    }
+
+    public int getDirectionNumber() {
+        return this.commandNumber;
     }
 
     public boolean isReflectable(Direction pieceDirection) {

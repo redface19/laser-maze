@@ -1,10 +1,7 @@
 package lasermaze.model.piece;
 
 import lasermaze.model.LaserPointer;
-import lasermaze.model.piece.common.Direction;
-import lasermaze.model.piece.common.PieceProperties;
-import lasermaze.model.piece.common.Position;
-import lasermaze.model.piece.common.Rotation;
+import lasermaze.model.piece.common.*;
 import lasermaze.model.piece.properties.*;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
@@ -16,8 +13,8 @@ public class Knight extends Piece {
 
     private Reflectable reflectable;
 
-    public Knight(User user, Position position, Playable playable, Reflectable reflectable) {
-        super(user, position, playable);
+    public Knight(User user, Direction direction, Point point, Playable playable, Reflectable reflectable) {
+        super(user, direction, point, playable);
         this.reflectable = reflectable;
     }
 
