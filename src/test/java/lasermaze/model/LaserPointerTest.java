@@ -1,5 +1,6 @@
 package lasermaze.model;
 
+import lasermaze.model.fixture.LaserPointerFixture;
 import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;

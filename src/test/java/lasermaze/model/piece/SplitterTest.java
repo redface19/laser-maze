@@ -1,47 +1,90 @@
 package lasermaze.model.piece;
 
-import lasermaze.model.Board;
-import lasermaze.model.ChessSquare;
 import lasermaze.model.LaserPointer;
+import lasermaze.model.fixture.LaserPointerFixture;
+import lasermaze.model.fixture.PieceFixture;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.properties.DiagonalReflect;
-import lasermaze.model.piece.properties.NonLaserPiece;
+import lasermaze.model.piece.common.Rotation;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static lasermaze.model.user.UserTest.BRAD;
-import static lasermaze.model.user.UserTest.DOBY;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SplitterTest {
-
     private static final Logger log = LoggerFactory.getLogger(SplitterTest.class);
 
     @Test
-    public void hitTest1() {
-        Splitter splitter = new Splitter(DOBY, Direction.NORTHEAST, new Point(3,3 ), new NonLaserPiece(), new DiagonalReflect());
-        ChessSquare chessSquare = new ChessSquare(DOBY, BRAD);
-        Board board = new Board(chessSquare);
-        LaserPointer laserPointer = new LaserPointer(Direction.NORTH, new Point(3,3 ));
-        splitter.hit(laserPointer);
-
-        log.debug("Laser Pointer Direction : {}", laserPointer); // west
-        log.debug("Piece Pointer Direction : {}", splitter);
+    public void move() {
+        Splitter splitter = PieceFixture.createSplitter(Direction.NORTHWEST, new Point(3, 3));
+        splitter.move(Direction.NORTHWEST);
+        assertThat(splitter.direction).isEqualTo(Direction.NORTHWEST);
+        assertThat(splitter.point).isEqualTo(new Point(2, 2));
     }
 
     @Test
-    public void hitTest2() {Splitter splitter = new Splitter(DOBY, Direction.SOUTHWEST, new Point(1,1 ), new NonLaserPiece(), new DiagonalReflect());
-        ChessSquare chessSquare = new ChessSquare(DOBY, BRAD);
-        Board board = new Board(chessSquare);
-        LaserPointer laserPointer = new LaserPointer(Direction.SOUTH, new Point(1,1 ));
+    public void move2() {
+        Splitter splitter = PieceFixture.createSplitter(Direction.NORTHWEST, new Point(3, 3));
+        splitter.move(Direction.SOUTHEAST);
+        assertThat(splitter.direction).isEqualTo(Direction.NORTHWEST);
+        assertThat(splitter.point).isEqualTo(new Point(4, 4));
+    }
+
+    @Test
+    public void roate() {
+        Splitter splitter = PieceFixture.createSplitter(Direction.NORTHWEST, new Point(3, 3));
+        splitter.rotate(Rotation.COUNTERCLOCKWISE);
+        assertThat(splitter.direction).isEqualTo(Direction.SOUTHWEST);
+        assertThat(splitter.point).isEqualTo(new Point(3, 3));
+    }
+
+    @Test
+    public void hit_반사할경우() {
+        Point point = new Point(3, 3);
+        Splitter splitter = PieceFixture.createSplitter(Direction.NORTHWEST, point);
+        LaserPointer laserPointer = new LaserPointer(Direction.EAST, point);
         splitter.hit(laserPointer);
+        assertThat(laserPointer).isEqualTo(LaserPointerFixture.createLaserPointer(Direction.NORTH, point));
+        assertThat(laserPointer.isEnd()).isFalse();
+    }
 
-        Splitter targetPiece = new Splitter(DOBY, Direction.SOUTHWEST, new Point(1,1 ), new NonLaserPiece(), new DiagonalReflect());
+    @Test
+    public void hit_반사할경우2() {
+        Point point = new Point(3, 3);
+        Splitter splitter = PieceFixture.createSplitter(Direction.NORTHWEST, point);
+        LaserPointer laserPointer = new LaserPointer(Direction.SOUTH, point);
+        splitter.hit(laserPointer);
+        assertThat(laserPointer).isEqualTo(LaserPointerFixture.createLaserPointer(Direction.WEST, point));
+        assertThat(laserPointer.isEnd()).isFalse();
+    }
 
-        LaserPointer targetPointer = new LaserPointer(Direction.EAST, new Point(1,1 ));
+    @Test
+    public void hit_반사할경우3() {
+        Point point = new Point(3, 3);
+        Splitter splitter = PieceFixture.createSplitter(Direction.NORTHWEST, point);
+        LaserPointer laserPointer = new LaserPointer(Direction.NORTH, point);
+        splitter.hit(laserPointer);
+        assertThat(laserPointer).isEqualTo(LaserPointerFixture.createLaserPointer(Direction.EAST, point));
+        assertThat(laserPointer.isEnd()).isFalse();
+    }
 
-        log.debug("Laser Pointer Direction : {}", laserPointer);
-        log.debug("Piece Pointer Direction : {}", splitter);
+    @Test
+    public void hit_반사할경우4() {
+        Point point = new Point(3, 3);
+        Splitter splitter = PieceFixture.createSplitter(Direction.NORTHWEST, point);
+        LaserPointer laserPointer = new LaserPointer(Direction.WEST, point);
+        splitter.hit(laserPointer);
+        assertThat(laserPointer).isEqualTo(LaserPointerFixture.createLaserPointer(Direction.SOUTH, point));
+        assertThat(laserPointer.isEnd()).isFalse();
+    }
+
+    @Test
+    public void canRemove() {
+        Point point = new Point(3, 3);
+        Splitter splitter = PieceFixture.createSplitter(Direction.NORTHWEST, point);
+        LaserPointer laserPointer = LaserPointerFixture.createLaserPointer(Direction.NORTH, point);
+        splitter.hit(laserPointer);
+        assertThat(laserPointer.isEnd()).isFalse();
     }
 }

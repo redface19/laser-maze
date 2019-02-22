@@ -17,9 +17,9 @@ import static lasermaze.model.user.UserTest.DOBY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ChessSquareTest {
-
     private static final Logger log = LoggerFactory.getLogger(ChessSquareTest.class);
 
+    public static final ChessSquare CHESS_SQUARE = new ChessSquare(DOBY, BRAD);
     ChessSquare chessSquare;
 
     @Before

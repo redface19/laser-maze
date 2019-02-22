@@ -49,7 +49,7 @@ public abstract class Piece implements Pieceable, Cloneable {
 
     @Override
     public void rotate(Rotation rotation) {
-        playable.rotate(direction, rotation);
+        direction = playable.rotate(direction, rotation);
     }
 
     @Override

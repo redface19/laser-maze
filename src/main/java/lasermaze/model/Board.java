@@ -48,8 +48,6 @@ public class Board {
                 if (!(pointer.isEnd() || pointer.isOutOfBound())) {
                     lasers.offer(pointer);
                 }
-
-                log.debug("pointer : {}", pointer);
             }
         }
     }

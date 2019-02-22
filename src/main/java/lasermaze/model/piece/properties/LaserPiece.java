@@ -9,7 +9,7 @@ public class LaserPiece extends CommonPlay {
 
     @Override
     public Direction rotate(Direction direction, Rotation rotation) {
-        int rotatedDirection = direction.getRotatedDirection(rotation).getDirectionNumber();
+        int rotatedDirection = direction.getRotatedDirection(rotation, 2).getDirectionNumber();
 
         if ((direction.getDirectionNumber() == 1 || direction.getDirectionNumber() == 3) && rotatedDirection == 5 || rotatedDirection == 7) {
             throw new NotSupportedException("Laser cannot be rotated");

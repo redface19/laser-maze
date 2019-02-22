@@ -20,17 +20,13 @@ public class LaserPointer {
         point.move(direction);
     }
 
-    public boolean canRemove(Direction pieceDirection) {
-        return !direction.isReflectable(pieceDirection);
-    }
-
     public void reflect(Direction pieceDirection) {
         if(pieceDirection.isSquareKnight()) {
             direction = pieceDirection;
             return;
         }
         Rotation reflectedRotation = direction.getTriangleRotation(pieceDirection);
-        Direction rotatedDirection = direction.getRotatedDirection(reflectedRotation);
+        Direction rotatedDirection = direction.getRotatedDirection(reflectedRotation, 2);
         this.direction = rotatedDirection;
     }
 
@@ -50,6 +46,9 @@ public class LaserPointer {
         return point;
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
 
     public boolean isOutOfBound() {
         return point.isOutOfBound();

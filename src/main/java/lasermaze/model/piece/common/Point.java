@@ -21,7 +21,7 @@ public class Point {
         MOVE_TABLE.put(Direction.SOUTH, new Point(1, 0));
         MOVE_TABLE.put(Direction.SOUTHWEST, new Point(1, -1));
         MOVE_TABLE.put(Direction.WEST, new Point(0, -1));
-        MOVE_TABLE.put(Direction.NORTHEAST, new Point(-1, -1));
+        MOVE_TABLE.put(Direction.NORTHWEST, new Point(-1, -1));
     }
 
     private int row;

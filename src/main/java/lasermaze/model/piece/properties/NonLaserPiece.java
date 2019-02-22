@@ -17,7 +17,7 @@ public class NonLaserPiece extends CommonPlay {
 
     @Override
     public Direction rotate(Direction direction, Rotation rotation) {
-        return direction.getRotatedDirection(rotation);
+        return direction.getRotatedDirection(rotation, 2);
     }
 
 }

@@ -1,6 +1,5 @@
 package lasermaze.model.piece.common;
 
-import lasermaze.model.Board;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,12 +22,12 @@ public enum Direction {
         for (Direction value : values()) {
             if(value.commandNumber == commandNumber) return value;
         }
-        return null;
+        return Direction.NONE;
     }
 
-    public Direction getRotatedDirection(Rotation rotation) {
+    public Direction getRotatedDirection(Rotation rotation, int degree) {
         int operand = rotation.equals(Rotation.COUNTERCLOCKWISE)? -1 : 1;
-        int newDirection = commandNumber + (2 * operand);
+        int newDirection = commandNumber + (degree * operand);
 
         if(newDirection <= 0 || newDirection > CHESSBOARD_SIZE)
             return getDirection(newDirection - (CHESSBOARD_SIZE * operand));
@@ -44,7 +43,8 @@ public enum Direction {
         if(pieceDirection.isSquareKnight()) {
             return pieceDirection.commandNumber == getDiametricalNumber();
         }
-        return pieceDirection.commandNumber + 1 != commandNumber && pieceDirection.commandNumber - 1 != commandNumber;
+        return pieceDirection.getRotatedDirection(Rotation.CLOCKWISE, 1).commandNumber != commandNumber
+                && pieceDirection.getRotatedDirection(Rotation.COUNTERCLOCKWISE, 1).commandNumber != commandNumber;
     }
 
     public boolean isSquareKnight() {
@@ -52,7 +52,7 @@ public enum Direction {
     }
 
     public Direction getDiametricalDirection() {
-        return getRotatedDirection(Rotation.COUNTERCLOCKWISE).getRotatedDirection(Rotation.COUNTERCLOCKWISE);
+        return getRotatedDirection(Rotation.COUNTERCLOCKWISE, 4);
     }
 
     public int getDiametricalNumber() {

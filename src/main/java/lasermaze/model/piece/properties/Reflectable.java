@@ -4,5 +4,6 @@ import lasermaze.model.LaserPointer;
 import lasermaze.model.piece.common.Direction;
 
 public interface Reflectable {
-    void reflect(LaserPointer ㅈlaserPointer, Direction direction);
+    void reflect(LaserPointer laserPointer, Direction direction);
+    boolean canDead(LaserPointer laserPointer, Direction direction);
 }

@@ -10,42 +10,42 @@ public class DirectionTest {
     public void getRotatedDirection() {
         Direction direction = Direction.NORTH;
         Rotation rotation = Rotation.COUNTERCLOCKWISE;
-        assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.WEST);
+        assertThat(direction.getRotatedDirection(rotation, 2)).isEqualTo(Direction.WEST);
     }
 
     @Test
     public void getRotatedDirection2() {
         Direction direction = Direction.WEST;
         Rotation rotation = Rotation.CLOCKWISE;
-        assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.NORTH);
+        assertThat(direction.getRotatedDirection(rotation, 2)).isEqualTo(Direction.NORTH);
     }
 
     @Test
     public void getRotatedDirection3() {
         Direction direction = Direction.SOUTH;
         Rotation rotation = Rotation.CLOCKWISE;
-        assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.WEST);
+        assertThat(direction.getRotatedDirection(rotation, 2)).isEqualTo(Direction.WEST);
     }
 
     @Test
     public void getRotatedDirection4() {
         Direction direction = Direction.SOUTH;
         Rotation rotation = Rotation.COUNTERCLOCKWISE;
-        assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.EAST);
+        assertThat(direction.getRotatedDirection(rotation, 2)).isEqualTo(Direction.EAST);
     }
 
     @Test
     public void getRotatedDirection5() {
         Direction direction = Direction.NORTHEAST;
         Rotation rotation = Rotation.COUNTERCLOCKWISE;
-        assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.NORTHWEST);
+        assertThat(direction.getRotatedDirection(rotation, 2)).isEqualTo(Direction.NORTHWEST);
     }
 
     @Test
     public void getRotatedDirection6() {
         Direction direction = Direction.EAST;
         Rotation rotation = Rotation.COUNTERCLOCKWISE;
-        assertThat(direction.getRotatedDirection(rotation)).isEqualTo(Direction.NORTH);
+        assertThat(direction.getRotatedDirection(rotation, 2)).isEqualTo(Direction.NORTH);
     }
 
     @Test
