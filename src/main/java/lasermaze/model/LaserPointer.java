@@ -3,10 +3,15 @@ package lasermaze.model;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
 import lasermaze.model.piece.common.Rotation;
+import org.slf4j.Logger;
 
 import java.util.Objects;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 public class LaserPointer {
+    private static final Logger log = getLogger(LaserPointer.class);
+
     private Direction direction;
     private Point point;
     private boolean end = false;
@@ -21,17 +26,19 @@ public class LaserPointer {
     }
 
     public void reflect(Direction pieceDirection) {
-        if(pieceDirection.isSquareKnight()) {
+        if (pieceDirection.isSquareKnight()) {
             direction = pieceDirection;
             return;
         }
         Rotation reflectedRotation = direction.getTriangleRotation(pieceDirection);
+        log.debug("reflectedRoation : {}", reflectedRotation);
         Direction rotatedDirection = direction.getRotatedDirection(reflectedRotation, 2);
+        log.debug("rotatedDirection : {}", rotatedDirection);
         this.direction = rotatedDirection;
     }
 
     public LaserPointer generateNewLaserPointer() {
-        return new LaserPointer(direction, point);
+        return new LaserPointer(direction, point.generateNewPoint());
     }
 
     public boolean isEnd() {

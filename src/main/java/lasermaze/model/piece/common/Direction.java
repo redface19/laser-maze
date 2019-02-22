@@ -20,16 +20,16 @@ public enum Direction {
 
     public static Direction getDirection(int commandNumber) {
         for (Direction value : values()) {
-            if(value.commandNumber == commandNumber) return value;
+            if (value.commandNumber == commandNumber) return value;
         }
         return Direction.NONE;
     }
 
     public Direction getRotatedDirection(Rotation rotation, int degree) {
-        int operand = rotation.equals(Rotation.COUNTERCLOCKWISE)? -1 : 1;
+        int operand = rotation.equals(Rotation.COUNTERCLOCKWISE) ? -1 : 1;
         int newDirection = commandNumber + (degree * operand);
 
-        if(newDirection <= 0 || newDirection > CHESSBOARD_SIZE)
+        if (newDirection <= 0 || newDirection > CHESSBOARD_SIZE)
             return getDirection(newDirection - (CHESSBOARD_SIZE * operand));
 
         return getDirection(newDirection);
@@ -40,7 +40,7 @@ public enum Direction {
     }
 
     public boolean isReflectable(Direction pieceDirection) {
-        if(pieceDirection.isSquareKnight()) {
+        if (pieceDirection.isSquareKnight()) {
             return pieceDirection.commandNumber == getDiametricalNumber();
         }
         return pieceDirection.getRotatedDirection(Rotation.CLOCKWISE, 1).commandNumber != commandNumber
@@ -60,7 +60,9 @@ public enum Direction {
     }
 
     public Rotation getTriangleRotation(Direction pieceDirection) {
-        if(pieceDirection.commandNumber - commandNumber == 3) return Rotation.CLOCKWISE;
+        int num = pieceDirection.commandNumber + 5;
+        if (num > 8) num -= 8;
+        if (num == commandNumber) return Rotation.CLOCKWISE;
         return Rotation.COUNTERCLOCKWISE;
     }
 }

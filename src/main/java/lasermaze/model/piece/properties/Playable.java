@@ -4,7 +4,7 @@ import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
 import lasermaze.model.piece.common.Rotation;
 
-public interface Playable {
+public interface Playable extends Property {
     void move(Point point, Direction direction);
     Direction rotate(Direction direction, Rotation rotation);
 }

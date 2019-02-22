@@ -1,13 +1,15 @@
 package lasermaze.model;
 
-import lasermaze.model.piece.*;
+import lasermaze.model.piece.Piece;
+import lasermaze.model.piece.Splitter;
 import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
 import lasermaze.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Board {
     private static final Logger log = LoggerFactory.getLogger(Board.class);
@@ -16,7 +18,6 @@ public class Board {
 
     public Board(ChessSquare chessSquare) {
         this.chessSquare = chessSquare;
-        chessSquare.pieceInit();
     }
 
     public void shoot(User user) {
@@ -48,12 +49,14 @@ public class Board {
                 if (!(pointer.isEnd() || pointer.isOutOfBound())) {
                     lasers.offer(pointer);
                 }
+
+                log.debug("pointer : {}", pointer.getPoint());
             }
         }
     }
 
     public void deletePiece(LaserPointer pointer) {
-        chessSquare.putPiece(pointer.getPoint(), chessSquare.getDummy(pointer.getPoint()));
+        chessSquare.putPiece(pointer.getPoint(), chessSquare.createDummy(pointer.getPoint()));
     }
 
     public Piece getPiece(Point point) {

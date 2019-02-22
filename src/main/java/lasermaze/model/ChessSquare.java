@@ -21,36 +21,47 @@ public class ChessSquare {
     private User user2;
 
     public ChessSquare(User user1, User user2) {
-        dummyInit();
         this.user1 = user1;
         this.user2 = user2;
-    }
-
-    public void pieceInit() {
-        putSymmetryPieces(user2, new King(user1, Direction.EAST, new Point(4, 0), new NonLaserPiece()));
-        putSymmetryPieces(user2, new Laser(user1, Direction.EAST, new Point(7, 0), new LaserPiece()));
-        putSymmetryPieces(user2, new Splitter(user1, Direction.NORTHEAST, new Point(7, 7), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHWEST, new Point(7, 4), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHWEST, new Point(1, 7), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHEAST, new Point(2, 0), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHEAST, new Point(3, 3), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.SOUTHEAST, new Point(4, 3), new NonLaserPiece(), new DiagonalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.EAST, new Point(3, 0), new NonLaserPiece(), new HorizontalReflect()));
-        putSymmetryPieces(user2, new Knight(user1, Direction.EAST, new Point(5, 0), new NonLaserPiece(), new HorizontalReflect()));
+        dummyInit();
     }
 
     private void dummyInit() {
         for (int row = 0; row < CHESSBOARD_SIZE; row++) {
             List<Piece> line = new ArrayList<>();
             for (int col = 0; col < CHESSBOARD_SIZE; col++) {
-                line.add(getDummy(new Point(row, col)));
+                line.add(createDummy(new Point(row, col)));
             }
             this.board.add(line);
         }
     }
 
-    public Dummy getDummy(Point point) {
-        return new Dummy(User.DUMMY_USER, Direction.NONE, point, new CommonPlay());
+    public ChessSquare pieceInit() {
+        putSymmetryPieces(user2, new King(user1, Direction.EAST, new Point(4, 0), NonLaserPiece.getInstance()));
+        putSymmetryPieces(user2, new Laser(user1, Direction.EAST, new Point(7, 0), LaserPiece.getInstance()));
+        putSymmetryPieces(user2, new Splitter(user1, Direction.NORTHEAST, new Point(7, 7), NonLaserPiece.getInstance(), DiagonalReflect.getInstance()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHWEST, new Point(7, 4), NonLaserPiece.getInstance(), DiagonalReflect.getInstance()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHWEST, new Point(1, 7), NonLaserPiece.getInstance(), DiagonalReflect.getInstance()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHEAST, new Point(2, 0), NonLaserPiece.getInstance(), DiagonalReflect.getInstance()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.NORTHEAST, new Point(3, 3), NonLaserPiece.getInstance(), DiagonalReflect.getInstance()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.SOUTHEAST, new Point(4, 3), NonLaserPiece.getInstance(), DiagonalReflect.getInstance()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.EAST, new Point(3, 0), NonLaserPiece.getInstance(), HorizontalReflect.getInstance()));
+        putSymmetryPieces(user2, new Knight(user1, Direction.EAST, new Point(5, 0), NonLaserPiece.getInstance(), HorizontalReflect.getInstance()));
+        return this;
+    }
+
+    public void putSymmetryPieces(User otherUser, Piece piece) {
+        try {
+            Point point = piece.getPoint();
+            putPiece(point, piece);
+            putPiece(point.getSymmetrical(), piece.makeEnemy(otherUser));
+        } catch (CloneNotSupportedException e) {
+            log.error("말 생성 오류 발생 : {}", e);
+        }
+    }
+
+    public Dummy createDummy(Point point) {
+        return new Dummy(User.DUMMY_USER, Direction.NONE, point, CommonPlay.getInstance());
     }
 
     public void putPiece(Point point, Piece piece) {
@@ -64,26 +75,11 @@ public class ChessSquare {
     public void swap(Point prevPoint, Direction direction) {
         Point nextPoint = prevPoint.getNextPoint(direction);
         putPiece(nextPoint, getPiece(prevPoint));
-        putPiece(prevPoint, getDummy(prevPoint));
-    }
-/*
-    public void deleteChess(Position position) {
-        Point point = position.getPoint();
-        putPiece(point, getDummy(point));
-    }*/
-
-    public void putSymmetryPieces(User other, Piece piece) {
-        try {
-            Point point = piece.getPoint();
-            putPiece(point, piece);
-            putPiece(point.getSymmetrical(), piece.makeEnemy(other));
-        } catch (CloneNotSupportedException e) {
-            log.error("말 생성 오류 발생 : {}", e);
-        }
+        putPiece(prevPoint, createDummy(prevPoint));
     }
 
-    public boolean isDummy(Point nextPoint) {
-        return getPiece(nextPoint) instanceof Dummy;
+    public boolean isDummy(Point point) {
+        return getPiece(point) instanceof Dummy;
     }
 
     public Laser getLaser(User user) {

@@ -1,11 +1,19 @@
 package lasermaze.model.piece.properties;
 
-import lasermaze.model.*;
+import lasermaze.model.NotSupportedException;
 import lasermaze.model.piece.common.Direction;
-import lasermaze.model.piece.common.Point;
 import lasermaze.model.piece.common.Rotation;
 
 public class LaserPiece extends CommonPlay {
+
+    private static LaserPiece laserPiece;
+
+    public static LaserPiece getInstance() {
+        if(laserPiece != null) return laserPiece;
+
+        laserPiece = new LaserPiece();
+        return laserPiece;
+    }
 
     @Override
     public Direction rotate(Direction direction, Rotation rotation) {

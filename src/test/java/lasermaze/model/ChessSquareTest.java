@@ -1,5 +1,6 @@
 package lasermaze.model;
 
+import lasermaze.model.fixture.PieceFixture;
 import lasermaze.model.piece.Dummy;
 import lasermaze.model.piece.King;
 import lasermaze.model.piece.Laser;
@@ -20,44 +21,40 @@ public class ChessSquareTest {
     private static final Logger log = LoggerFactory.getLogger(ChessSquareTest.class);
 
     public static final ChessSquare CHESS_SQUARE = new ChessSquare(DOBY, BRAD);
-    ChessSquare chessSquare;
-
-    @Before
-    public void setUp() throws Exception {
-        chessSquare = new ChessSquare(DOBY, BRAD);
-    }
 
     @Test
     public void putSymmetryPieces() {
-        chessSquare.putSymmetryPieces(BRAD, new King(DOBY, Direction.EAST, new Point(4, 0), new NonLaserPiece()));
+        CHESS_SQUARE.putSymmetryPieces(BRAD, new King(DOBY, Direction.EAST, new Point(4, 0), NonLaserPiece.getInstance()));
+        Point point = new Point(3, 7);
+        assertThat(CHESS_SQUARE.getPiece(point)).isEqualTo(PieceFixture.createKing(BRAD, Direction.WEST, point));
     }
 
     @Test
     public void 왕_장기확인() {
-        chessSquare.pieceInit();
-        assertThat(chessSquare.getPiece(new Point(4, 0)) instanceof King).isTrue();
+        CHESS_SQUARE.pieceInit();
+        assertThat(CHESS_SQUARE.getPiece(new Point(4, 0)) instanceof King).isTrue();
     }
 
 
     @Test
     public void getLaser() {
-        chessSquare.pieceInit();
-        Laser laser = chessSquare.getLaser(DOBY);
+        CHESS_SQUARE.pieceInit();
+        Laser laser = CHESS_SQUARE.getLaser(DOBY);
         assertThat(laser instanceof Laser).isTrue();
     }
 
     @Test
     public void getLaser2() {
-        chessSquare.pieceInit();
-        Laser laser = chessSquare.getLaser(BRAD);
+        CHESS_SQUARE.pieceInit();
+        Laser laser = CHESS_SQUARE.getLaser(BRAD);
         assertThat(laser instanceof Laser).isTrue();
     }
 
     @Test
     public void pieceInitTest() {
-        chessSquare.pieceInit();
-        log.debug("piece : {}", chessSquare.getPiece(new Point(4, 0)));
-        assertThat(chessSquare.getPiece(new Point(4, 0)) instanceof King).isTrue();
+        CHESS_SQUARE.pieceInit();
+        log.debug("piece : {}", CHESS_SQUARE.getPiece(new Point(4, 0)));
+        assertThat(CHESS_SQUARE.getPiece(new Point(4, 0)) instanceof King).isTrue();
     }
 
     @Test
