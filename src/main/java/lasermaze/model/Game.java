@@ -21,16 +21,39 @@ public class Game {
 
     public void start() {
         int turn = 0;
-        User winner = User.DUMMY_USER;
-        while (winner.isDummyUser()) {
+        GameResult result = GameResult.NOT_DECIDED;
+        while (result == GameResult.NOT_DECIDED) {
             int[] input = {4, 0, 3};
 
             Command command = new Command(new Point(input[0], input[1]), input[2]);
             command.execute(board, getCurrentPlayer(turn));
             turn++;
 
-            winner = getWinner();
+            result = getResult(this.board);
         }
+    }
+
+    public GameResult getResult(Board board) {
+        boolean user1King = hasKing(user1, board);
+        boolean user2King = hasKing(user2, board);
+
+        if(user1King && user2King) return GameResult.NOT_DECIDED;
+        if(user1King) return GameResult.USER1;
+        if(user2King) return GameResult.USER2;
+        return GameResult.DRAW;
+    }
+
+    public static boolean hasKing(User user, Board board) {
+        for (int i = 0; i < CHESSBOARD_SIZE; i++) {
+            for (int j = 0; j < CHESSBOARD_SIZE; j++) {
+                Piece piece = board.getPiece(new Point(i, j));
+                if(piece instanceof King && piece.isSameUser(user)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public User getCurrentPlayer(int turn) {
@@ -38,27 +61,6 @@ public class Game {
         return user2;
     }
 
-    public User getWinner() {
-        boolean kingOfUser1Exist = true;
-        boolean kingOfUser2Exist = true;
-        for (int row = 0; row < CHESSBOARD_SIZE; row++) {
-            for (int col = 0; col < CHESSBOARD_SIZE; col++) {
-                Piece piece = board.getPiece(new Point(row, col));
-                kingOfUser1Exist = winnerCheck(piece, user1);
-                kingOfUser2Exist = winnerCheck(piece, user2);
-            }
-        }
-        return decideWinner(kingOfUser1Exist, kingOfUser2Exist);
-    }
 
-    public boolean winnerCheck(Piece piece, User user) {
-        return piece instanceof King && piece.isSameUser(user);
-    }
-
-    public User decideWinner(boolean kingOfUser1Exist, boolean kingOfUser2Exist) {
-        if (!kingOfUser1Exist) return user2;
-        if (!kingOfUser2Exist) return user1;
-        return User.DUMMY_USER;
-    }
 }
 

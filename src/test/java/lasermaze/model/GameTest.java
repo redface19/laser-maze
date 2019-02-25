@@ -1,6 +1,8 @@
 package lasermaze.model;
 
+import lasermaze.model.fixture.PieceFixture;
 import lasermaze.model.piece.Piece;
+import lasermaze.model.piece.common.Direction;
 import lasermaze.model.piece.common.Point;
 import lasermaze.model.user.User;
 import org.junit.Before;
@@ -23,39 +25,32 @@ public class GameTest {
     @Test
     public void winnerCheck() {
         Game game = new Game(DOBY, BRAD);
-        Piece piece = board.getPiece(new Point(4, 0));
-        assertThat(game.winnerCheck(piece, DOBY)).isTrue();
+        chessSquare.putPiece(new Point(4, 0), PieceFixture.createKing(DOBY, Direction.EAST, new Point(4, 0)));
+        Board board = new Board(chessSquare);
+        assertThat(game.getResult(board)).isEqualTo(GameResult.USER1);
     }
 
     @Test
     public void winnerCheck2() {
         Game game = new Game(DOBY, BRAD);
-        Piece piece = board.getPiece(new Point(4, 0));
-        assertThat(game.winnerCheck(piece, BRAD)).isFalse();
+        chessSquare.putPiece(new Point(4, 0), PieceFixture.createKing(DOBY, Direction.EAST, new Point(4, 0)));
+        chessSquare.putPiece(new Point(4, 7), PieceFixture.createKing(BRAD, Direction.WEST, new Point(4, 7)));
+        Board board = new Board(chessSquare);
+        assertThat(game.getResult(board)).isEqualTo(GameResult.NOT_DECIDED);
     }
 
     @Test
-    public void decideWinner() {
+    public void winnerCheck3() {
         Game game = new Game(DOBY, BRAD);
-        assertThat(game.decideWinner(false, true)).isEqualTo(BRAD);
+        Board board = new Board(chessSquare);
+        assertThat(game.getResult(board)).isEqualTo(GameResult.DRAW);
     }
 
-
     @Test
-    public void decideWinner2() {
+    public void winnerCheck4() {
         Game game = new Game(DOBY, BRAD);
-        assertThat(game.decideWinner(true, true)).isEqualTo(User.DUMMY_USER);
-    }
-
-    @Test
-    public void getWinner() {
-       Game game = new Game(DOBY, BRAD);
-       assertThat(game.getWinner()).isEqualTo(BRAD);
-    }
-
-    @Test
-    public void getWinner2() {
-        Game game = new Game(DOBY, BRAD);
-        assertThat(game.getWinner().isDummyUser()).isTrue();
+        chessSquare.putPiece(new Point(4, 0), PieceFixture.createKing(BRAD, Direction.EAST, new Point(4, 0)));
+        Board board = new Board(chessSquare);
+        assertThat(game.getResult(board)).isEqualTo(GameResult.USER2);
     }
 }

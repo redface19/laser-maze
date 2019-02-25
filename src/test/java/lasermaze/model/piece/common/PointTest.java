@@ -32,4 +32,10 @@ public class PointTest {
         assertThat(point.getSymmetrical()).isEqualTo(new Point(6, 1));
     }
 
+    @Test
+    public void isOutOfBound() {
+        Point nextPoint = new Point(-1, 0);
+        assertThat(nextPoint.isOutOfBound()).isTrue();
+    }
+
 }

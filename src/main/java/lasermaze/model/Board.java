@@ -25,12 +25,13 @@ public class Board {
         lasers.add(laserPointer);
 
         for (int i = 0; i < lasers.size(); i++) {
-            LaserPointer currentPointer = move(lasers, lasers.get(i));
+            LaserPointer currentPointer = move(lasers, i);
             if(currentPointer.isEnd()) deletePiece(lasers.get(i));
         }
     }
 
-    public LaserPointer move(List<LaserPointer> lasers, LaserPointer laserPointer) {
+    public LaserPointer move(List<LaserPointer> lasers, int index) {
+        LaserPointer laserPointer = lasers.get(index);
         while(!laserPointer.isEnd() && !laserPointer.getNextPoint().isOutOfBound()) {
             laserPointer.move();
             log.debug("pointer : {}", laserPointer.getPoint());

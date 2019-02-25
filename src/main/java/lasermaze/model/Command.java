@@ -16,7 +16,6 @@ public class Command {
     private int commandNumber;
 
     public Command(Point point, int commandNumber) {
-//        if (!isValid(input[2])) throw new IllegalArgumentException();
         this.point = point;
         this.commandNumber = commandNumber;
     }
