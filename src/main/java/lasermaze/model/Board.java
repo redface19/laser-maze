@@ -36,7 +36,7 @@ public class Board {
                 }
 
                 Piece nextPiece = getPiece(pointer.getPoint());
-                if (nextPiece instanceof Splitter && !pointer.isOutOfBound()) {
+                if (nextPiece instanceof Splitter) {
                     lasers.offer(pointer.generateNewLaserPointer());
                 }
 
