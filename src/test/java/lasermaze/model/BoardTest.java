@@ -92,7 +92,7 @@ public class BoardTest {
     @Test
     public void shoot4() {
         BoardFixture.putLaser(chessSquare, Direction.EAST, new Point(4, 0));
-        BoardFixture.putTriangleNight(chessSquare, Direction.SOUTHWEST, new Point(4, 3));
+        BoardFixture.putTriangleNight(chessSquare, Direction.NORTHWEST, new Point(4, 3));
         BoardFixture.putKing(chessSquare, DOBY, Direction.NORTH, new Point(2, 3));
         BoardFixture.putKing(chessSquare, BRAD, Direction.NORTH, new Point(1, 3));
         BoardFixture.putKing(chessSquare, BRAD, Direction.NORTH, new Point(0, 3));

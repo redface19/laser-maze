@@ -24,32 +24,25 @@ public class Board {
         LaserPointer laserPointer = chessSquare.getLaser(user).generateLaserPointer();
         lasers.add(laserPointer);
 
-        while (!lasers.isEmpty()) {
-            ListIterator<LaserPointer> iterator = lasers.listIterator();
-            int size = lasers.size();
-            for (int i = 0; i < size; i++) {
-                LaserPointer pointer = iterator.next();
-                pointer.move();
-
-                Piece nextPiece = getPiece(pointer.getPoint());
-                if (nextPiece instanceof Splitter) {
-                    lasers.add(pointer.generateNewLaserPointer());
-                }
-                nextPiece.hit(pointer);
-
-                if(isRemovable(pointer)) iterator.remove();
-
-                log.debug("pointer : {}", pointer.getPoint());
-            }
+        for (int i = 0; i < lasers.size(); i++) {
+            LaserPointer currentPointer = move(lasers, lasers.get(i));
+            if(currentPointer.isEnd()) deletePiece(lasers.get(i));
         }
     }
 
-    private boolean isRemovable(LaserPointer pointer) {
-        if(pointer.isEnd()) {
-            deletePiece(pointer);
-            return true;
+    public LaserPointer move(List<LaserPointer> lasers, LaserPointer laserPointer) {
+        while(!laserPointer.isEnd() && !laserPointer.getNextPoint().isOutOfBound()) {
+            laserPointer.move();
+            log.debug("pointer : {}", laserPointer.getPoint());
+
+            Piece nextPiece = getPiece(laserPointer.getPoint());
+            if (nextPiece instanceof Splitter) {
+                lasers.add(laserPointer.generateNewLaserPointer());
+            }
+            nextPiece.hit(laserPointer);
         }
-        return pointer.getNextPoint().isOutOfBound();
+
+        return laserPointer;
     }
 
     public void deletePiece(LaserPointer pointer) {
