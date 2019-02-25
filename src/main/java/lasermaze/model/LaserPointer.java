@@ -57,8 +57,8 @@ public class LaserPointer {
         return direction;
     }
 
-    public boolean isOutOfBound() {
-        return point.isOutOfBound();
+    public Point getNextPoint() {
+        return point.getNextPoint(direction);
     }
 
     @Override

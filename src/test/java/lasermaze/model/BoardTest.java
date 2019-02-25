@@ -90,6 +90,19 @@ public class BoardTest {
     }
 
     @Test
+    public void shoot4() {
+        BoardFixture.putLaser(chessSquare, Direction.EAST, new Point(4, 0));
+        BoardFixture.putTriangleNight(chessSquare, Direction.SOUTHWEST, new Point(4, 3));
+        BoardFixture.putKing(chessSquare, DOBY, Direction.NORTH, new Point(2, 3));
+        BoardFixture.putKing(chessSquare, BRAD, Direction.NORTH, new Point(1, 3));
+        BoardFixture.putKing(chessSquare, BRAD, Direction.NORTH, new Point(0, 3));
+        board.shoot(DOBY);
+        assertThat(board.getPiece(new Point(2, 0)) instanceof Dummy).isTrue();
+        assertThat(board.getPiece(new Point(1, 3)) instanceof King).isTrue();
+        assertThat(board.getPiece(new Point(0, 3)) instanceof King).isTrue();
+    }
+
+    @Test
     public void shoot_삼각기사_오른쪽반사() {
         BoardFixture.putLaser(chessSquare, Direction.WEST, new Point(4, 7));
         BoardFixture.putTriangleNight(chessSquare, Direction.NORTHEAST, new Point(4, 4));

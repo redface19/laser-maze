@@ -8,8 +8,7 @@ import lasermaze.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Board {
     private static final Logger log = LoggerFactory.getLogger(Board.class);
@@ -21,38 +20,36 @@ public class Board {
     }
 
     public void shoot(User user) {
-        Queue<LaserPointer> lasers = new LinkedList<>();
+        List<LaserPointer> lasers = new ArrayList<>();
         LaserPointer laserPointer = chessSquare.getLaser(user).generateLaserPointer();
         lasers.add(laserPointer);
 
         while (!lasers.isEmpty()) {
+            ListIterator<LaserPointer> iterator = lasers.listIterator();
             int size = lasers.size();
             for (int i = 0; i < size; i++) {
-                LaserPointer pointer = lasers.poll();
+                LaserPointer pointer = iterator.next();
                 pointer.move();
-
-                if(pointer.isOutOfBound()) {
-                    continue;
-                }
 
                 Piece nextPiece = getPiece(pointer.getPoint());
                 if (nextPiece instanceof Splitter) {
-                    lasers.offer(pointer.generateNewLaserPointer());
+                    lasers.add(pointer.generateNewLaserPointer());
                 }
-
                 nextPiece.hit(pointer);
 
-                if(pointer.isEnd()) {
-                    deletePiece(pointer);
-                }
-
-                if (!(pointer.isEnd() || pointer.isOutOfBound())) {
-                    lasers.offer(pointer);
-                }
+                if(isRemovable(pointer)) iterator.remove();
 
                 log.debug("pointer : {}", pointer.getPoint());
             }
         }
+    }
+
+    private boolean isRemovable(LaserPointer pointer) {
+        if(pointer.isEnd()) {
+            deletePiece(pointer);
+            return true;
+        }
+        return pointer.getNextPoint().isOutOfBound();
     }
 
     public void deletePiece(LaserPointer pointer) {
