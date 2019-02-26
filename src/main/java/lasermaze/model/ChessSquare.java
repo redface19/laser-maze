@@ -16,7 +16,7 @@ public class ChessSquare {
 
     public static final int CHESSBOARD_SIZE = 8;
 
-    private List<List<Piece>> board = new ArrayList<>();
+    private List<List<Piece>> chessSquares = new ArrayList<>();
     private User user1;
     private User user2;
 
@@ -32,7 +32,7 @@ public class ChessSquare {
             for (int col = 0; col < CHESSBOARD_SIZE; col++) {
                 line.add(createDummy(new Point(row, col)));
             }
-            this.board.add(line);
+            this.chessSquares.add(line);
         }
     }
 
@@ -65,11 +65,11 @@ public class ChessSquare {
     }
 
     public void putPiece(Point point, Piece piece) {
-        board.get(point.getRow()).set(point.getCol(), piece);
+        chessSquares.get(point.getRow()).set(point.getCol(), piece);
     }
 
     public Piece getPiece(Point point) {
-        return board.get(point.getRow()).get(point.getCol());
+        return chessSquares.get(point.getRow()).get(point.getCol());
     }
 
     public void swap(Point prevPoint, Direction direction) {
@@ -83,7 +83,7 @@ public class ChessSquare {
     }
 
     public Laser getLaser(User user) {
-        for (List<Piece> line : board) {
+        for (List<Piece> line : chessSquares) {
             for (Piece piece : line) {
                 if (piece.isSameUser(user) && piece instanceof Laser) return (Laser) piece;
             }
