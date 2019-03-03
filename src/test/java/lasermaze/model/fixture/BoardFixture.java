@@ -1,9 +1,9 @@
 package lasermaze.model.fixture;
 
-import lasermaze.model.ChessSquare;
-import lasermaze.model.piece.common.Direction;
-import lasermaze.model.piece.common.Point;
-import lasermaze.model.user.User;
+import lasermaze.model.game.ChessSquare;
+import lasermaze.model.game.piece.common.Direction;
+import lasermaze.model.game.piece.common.Point;
+import lasermaze.model.game.user.GameUser;
 
 public class BoardFixture {
 
@@ -11,8 +11,8 @@ public class BoardFixture {
         chessSquare.putPiece(point, PieceFixture.createDummy(point));
     }
 
-    public static void putKing(ChessSquare chessSquare, User user, Direction direction, Point point) {
-        chessSquare.putPiece(point, PieceFixture.createKing(user, direction, point));
+    public static void putKing(ChessSquare chessSquare, GameUser gameUser, Direction direction, Point point) {
+        chessSquare.putPiece(point, PieceFixture.createKing(gameUser, direction, point));
     }
 
     public static void putSquareNight(ChessSquare chessSquare, Direction direction, Point point) {

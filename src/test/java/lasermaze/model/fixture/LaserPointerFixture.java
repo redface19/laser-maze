@@ -1,8 +1,8 @@
 package lasermaze.model.fixture;
 
-import lasermaze.model.LaserPointer;
-import lasermaze.model.piece.common.Direction;
-import lasermaze.model.piece.common.Point;
+import lasermaze.model.game.LaserPointer;
+import lasermaze.model.game.piece.common.Direction;
+import lasermaze.model.game.piece.common.Point;
 
 public class LaserPointerFixture {
     public static final LaserPointer LASER_POINTER1 = new LaserPointer(Direction.EAST, new Point(7, 0));

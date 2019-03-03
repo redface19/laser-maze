@@ -1,21 +1,21 @@
 package lasermaze.model.fixture;
 
-import lasermaze.model.piece.*;
-import lasermaze.model.piece.common.Direction;
-import lasermaze.model.piece.common.Point;
-import lasermaze.model.piece.properties.*;
-import lasermaze.model.user.User;
+import lasermaze.model.game.piece.*;
+import lasermaze.model.game.piece.common.Direction;
+import lasermaze.model.game.piece.common.Point;
+import lasermaze.model.game.piece.properties.*;
+import lasermaze.model.game.user.GameUser;
 
-import static lasermaze.model.user.UserTest.DOBY;
+import static lasermaze.model.game.user.UserTest.DOBY;
 
 public class PieceFixture {
 
     public static Dummy createDummy(Point point) {
-        return new Dummy(User.DUMMY_USER, Direction.NONE, point, CommonPlay.getInstance());
+        return new Dummy(GameUser.DUMMY_GAME_USER, Direction.NONE, point, CommonPlay.getInstance());
     }
 
-    public static King createKing(User user, Direction direction, Point point) {
-        return new King(user, direction, point, NonLaserPiece.getInstance());
+    public static King createKing(GameUser gameUser, Direction direction, Point point) {
+        return new King(gameUser, direction, point, NonLaserPiece.getInstance());
     }
 
     public static Knight createSquareNight(Direction direction, Point point) {

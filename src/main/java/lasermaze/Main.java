@@ -1,15 +1,15 @@
 package lasermaze;
 
-import lasermaze.model.Game;
-import lasermaze.model.user.User;
+import lasermaze.model.game.Game;
+import lasermaze.model.game.user.GameUser;
 
 public class Main {
     public static void main(String[] args) {
 
-        // test User
-        User user1 = new User("user1");
-        User user2 = new User("user2");
-        Game game = new Game(user1, user2);
+        // test GameUser
+        GameUser gameUser1 = new GameUser("gameUser1");
+        GameUser gameUser2 = new GameUser("gameUser2");
+        Game game = new Game(gameUser1, gameUser2);
         game.start();
     }
 }
